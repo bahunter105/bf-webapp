@@ -9,12 +9,16 @@ nav {
 
 nav ul {
   list-style-type: none;
+  margin:0px;
+  justify-content: center;
+  display: flex;
 }
 
 nav ul li {
   display: inline;
   padding-left: 1rem;
   padding-right: 1rem;
+  padding-top: .25rem;
 }
 
 nav ul li a {
