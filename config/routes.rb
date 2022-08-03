@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root to: 'pages#coming_soon'
   get 'home', to: 'pages#home'
   get 'families', to: 'pages#family_home'
-  get 'educators', to: 'pages#educator_home'
+  get 'home/educators', to: 'pages#educator_home'
   get 'webinar', to: 'pages#webinar'
   get 'workshops', to: 'pages#workshops'
   get 'courses', to: 'pages#courses'
