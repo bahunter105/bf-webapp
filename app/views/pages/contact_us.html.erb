@@ -1,1 +1,26 @@
-<h1>Contact Us</h1>
+<%= render "shared/navbar" %>
+<section class="position-relative py-5 overflow-hidden">
+  <div class="container position-relative">
+    <div class="row align-items-center">
+      <div class="col-12 col-lg-6 mb-5 mb-lg-0">
+        <div class="mw-lg-md mb-5 mb-lg-24">
+          <h2 class="mb-4">Get questions?</h2>
+          <p class="lead lh-lg text-muted">Reach out, we'd love to hear from you!</p>
+        </div>
+        <div class="row">
+        </div>
+      </div>
+      <div class="col-12 col-lg-6 position-relative">
+        <div class="position-relative py-5 px-5 bg-white shadow-lg text-center">
+           <form action="#">
+            <input class="form-control mb-5" type="text" placeholder="Name">
+            <input class="form-control mb-5" type="email" placeholder="E-mail address">
+            <textarea class="form-control mb-5" name="message" cols="30" rows="10" placeholder="Your Message..."></textarea>
+            <button class="btn btn-secondary w-100">Send</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<%= render "shared/footer" %>
