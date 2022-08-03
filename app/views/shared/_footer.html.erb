@@ -46,7 +46,7 @@
   <div class="container">
     <div class="row border-bottom">
       <div class="col-12 col-lg-3 mb-10 mb-lg-0">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/home">
           <%= image_tag "logo_w_bg.png", alt: "Bright Futures Logo", style: "width: 6rem;"%>
         </a>
       </div>
@@ -55,26 +55,30 @@
           <div class="col-12 col-sm-6 col-lg-auto mb-8 mb-lg-0">
             <p class="fw-bold mb-6">Products</p>
             <ul class="list-unstyled">
-              <li class="mb-3"><a class="small text-muted text-decoration-none" href="#">Free Webinars</a></li>
+              <li class="mb-3"><%= link_to "Free Webinars",  webinar_path, :class=>"small text-muted text-decoration-none" %></li>
+              <li class="mb-3"><%= link_to "Workshops",  workshops_path, :class=>"small text-muted text-decoration-none" %></li>
+              <li class="mb-3"><%= link_to "Courses",  courses_path, :class=>"small text-muted text-decoration-none" %></li>
+              <li class="mb-3"><%= link_to "Consultations",  consultations_path, :class=>"small text-muted text-decoration-none" %></li>
+              <%# <li class="mb-3"><a class="small text-muted text-decoration-none" href="#">Free Webinars</a></li>
               <li class="mb-3"><a class="small text-muted text-decoration-none" href="#">Workshops</a></li>
               <li class="mb-3"><a class="small text-muted text-decoration-none" href="#">Courses</a></li>
-              <li class="mb-3"><a class="small text-muted text-decoration-none" href="#">Consultations</a></li>
-              <li class="mb-3"><a class="small text-muted text-decoration-none" href="#">Curriculum &amp; Resources (Coming Soon)</a></li>
-              <li><a class="small text-muted text-decoration-none" href="#">Ambassador Program (Coming Soon)</a></li>
+              <li class="mb-3"><a class="small text-muted text-decoration-none" href="#">Consultations</a></li> %>
+              <li class="mb-3"><a class="small text-muted text-decoration-none" href="">Curriculum &amp; Resources (Coming Soon)</a></li>
+              <li><a class="small text-muted text-decoration-none" href="">Ambassador Program (Coming Soon)</a></li>
             </ul>
           </div>
 
           <div class="col-12 col-sm-6 col-lg-auto mb-8 mb-lg-0">
             <p class="fw-bold mb-6">About</p>
             <ul class="list-unstyled">
-              <li class="mb-3"><a class="small text-muted text-decoration-none" href="#">Mission</a></li>
+              <li class="mb-3"><%= link_to "Mission",  "#{about_path}#mission", :class=>"small text-muted text-decoration-none" %></li>
+              <li class="mb-3"><%= link_to "Team",  "#{about_path}#team", :class=>"small text-muted text-decoration-none" %></li>
+              <li><%= link_to "Contact Us",  contact_path, :class=>"small text-muted text-decoration-none" %></li>
+              <%# <li class="mb-3"><a class="small text-muted text-decoration-none" href="#">Mission</a></li>
               <li class="mb-3"><a class="small text-muted text-decoration-none" href="#">Team</a></li>
-              <li class="mb-3"><a class="small text-muted text-decoration-none" href="#">Press/News</a></li>
-              <li class="mb-3"><a class="small text-muted text-decoration-none" href="#">Careers/Team</a></li>
-              <li><a class="small text-muted text-decoration-none" href="#">Contact Us</a></li>
+              <li><a class="small text-muted text-decoration-none" href="#">Contact Us</a></li> %>
             </ul>
           </div>
-
         </div>
       </div>
     </div>
