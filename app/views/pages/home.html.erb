@@ -11,7 +11,7 @@
       <div class="mw-4xl mx-auto text-center">
         <h2 class="mt-6 mb-4 text-white">Understand More About Your Child</h2>
         <p class="mb-6 mw-2xl mx-auto lead text-light">If you have ever wondered how to develop your brand, this is the place for you. Take a big step forward in growing your business with this great tool.</p>
-        <a class="btn btn-secondary d-block d-md-inline-block mb-2 mb-md-0 me-md-4" href="#">See Our Workshops</a>
+        <a class="btn btn-secondary d-block d-md-inline-block mb-2 mb-md-0 me-md-4" href="/workshops">See Our Workshops</a>
       </div>
     </div>
   </section>
@@ -78,19 +78,19 @@
         <div class="col-12 col-lg-4 mb-5 mb-lg-0">
           <div class="mw-xl mx-auto p-5 text-center secondary-product-box">
             <h2 class="text-primary mb-5">Courses</h2>
-            <a class="btn btn-primary w-100" href="#">Start Now</a>
+            <a class="btn btn-primary w-100" href="/courses">Start Now</a>
           </div>
         </div>
         <div class="col-12 col-lg-4 mb-5 mb-lg-0">
           <div class="mw-xl mx-auto p-5 bg-primary text-center">
             <h2 class="text-white mb-5">Workshops</h2>
-            <a class="btn btn-light w-100" href="#">Start Now</a>
+            <a class="btn btn-light w-100" href="/workshops">Start Now</a>
           </div>
         </div>
         <div class="col-12 col-lg-4">
           <div class="mw-xl mx-auto p-5 text-center secondary-product-box">
             <h2 class="text-primary mb-5">Consultations</h2>
-            <a class="btn btn-primary w-100" href="#">Start Now</a>
+            <a class="btn btn-primary w-100" href="/consultations">Book Now</a>
           </div>
         </div>
       </div>
@@ -143,8 +143,9 @@
           <div class="mw-lg-sm mx-auto">
             <h2 class="mb-6">Learn More With Our Free Webinars</h2>
             <p class="lead lh-lg text-muted mb-6">With this tool, you will get much better results at work and develop new skills. Will you take the risk of trying the latest version of our application?</p>
-            <a class="btn btn-primary d-block d-md-inline-block mb-6 mb-md-0 mb-lg-0 me-md-4" href="#">Access Now</a>
-
+            <div class="btn btn-primary d-block d-md-inline-block mb-6 mb-md-0 mb-lg-0 me-md-4">
+              <%= link_to "Access Now", "#{webinar_path}#families", :class=>"text-white text-decoration-none" %>
+            </div>
           </div>
         </div>
         <div class="col-12 col-lg-6 position-relative">
@@ -165,7 +166,7 @@
       <div class="mw-4xl mx-auto text-center">
         <h2 class="mt-3 text-white">Book A One-On-One Consultation</h2>
         <p class="mb-6 mw-2xl mx-auto lead text-light">Need a bit more help? We got you.</p>
-        <a class="btn btn-secondary d-block d-md-inline-block mb-2 mb-md-0 me-md-4" href="#">Schedule Now</a>
+        <a class="btn btn-secondary d-block d-md-inline-block mb-2 mb-md-0 me-md-4" href="/consultations">Schedule Now</a>
       </div>
     </div>
   </section>
