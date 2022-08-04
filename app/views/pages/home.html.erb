@@ -1,17 +1,18 @@
 <%= render "shared/navbar" %>
 <body>
-  <section class="position-relative py-48" style="height: 90vh; background-image: url('https://images.unsplash.com/photo-1510133768164-a8f7e4d4e3dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1200&amp;q=80'); background-repeat: no-repeat; background-size: cover; background-position: center;">
-    <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark" style="opacity: 75%;"></div>
+  <section class="position-relative py-48" style="height: 90vh; background-image: linear-gradient(to bottom,rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1534224563519-fea04849cadf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80'); background-repeat: no-repeat; background-size: cover; background-position: center;">
+    <%# <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark" style="opacity: 75%;"></div> %>
     <div class="position-relative container h-100 text-center d-flex align-items-center justify-content-center">
       <h2 class="mt-4 mb-3 text-white">Supporting the International Community for a Brighter Tomorrow</h2>
     </div>
   </section>
+
   <section id="fs" class="py-20 bg-primary" style="background-image: url('cronos-assets/elements/lines3.svg'); background-repeat: no-repeat; background-size: cover; padding: 4rem;">
     <div class="container">
       <div class="mw-4xl mx-auto text-center">
         <h2 class="mt-6 mb-4 text-white">Understand More About Your Child</h2>
         <p class="mb-6 mw-2xl mx-auto lead text-light">If you have ever wondered how to develop your brand, this is the place for you. Take a big step forward in growing your business with this great tool.</p>
-        <a class="btn btn-secondary d-block d-md-inline-block mb-2 mb-md-0 me-md-4" href="#">See Our Workshops</a>
+        <a class="btn btn-secondary d-block d-md-inline-block mb-2 mb-md-0 me-md-4" href="/workshops">See Our Workshops</a>
       </div>
     </div>
   </section>
@@ -78,19 +79,19 @@
         <div class="col-12 col-lg-4 mb-5 mb-lg-0">
           <div class="mw-xl mx-auto p-5 text-center secondary-product-box">
             <h2 class="text-primary mb-5">Courses</h2>
-            <a class="btn btn-primary w-100" href="#">Start Now</a>
+            <a class="btn btn-primary w-100" href="/courses">Start Now</a>
           </div>
         </div>
         <div class="col-12 col-lg-4 mb-5 mb-lg-0">
           <div class="mw-xl mx-auto p-5 bg-primary text-center">
             <h2 class="text-white mb-5">Workshops</h2>
-            <a class="btn btn-light w-100" href="#">Start Now</a>
+            <a class="btn btn-light w-100" href="/workshops">Start Now</a>
           </div>
         </div>
         <div class="col-12 col-lg-4">
           <div class="mw-xl mx-auto p-5 text-center secondary-product-box">
             <h2 class="text-primary mb-5">Consultations</h2>
-            <a class="btn btn-primary w-100" href="#">Start Now</a>
+            <a class="btn btn-primary w-100" href="/consultations">Book Now</a>
           </div>
         </div>
       </div>
@@ -143,8 +144,9 @@
           <div class="mw-lg-sm mx-auto">
             <h2 class="mb-6">Learn More With Our Free Webinars</h2>
             <p class="lead lh-lg text-muted mb-6">With this tool, you will get much better results at work and develop new skills. Will you take the risk of trying the latest version of our application?</p>
-            <a class="btn btn-primary d-block d-md-inline-block mb-6 mb-md-0 mb-lg-0 me-md-4" href="#">Access Now</a>
-
+            <div class="btn btn-primary d-block d-md-inline-block mb-6 mb-md-0 mb-lg-0 me-md-4">
+              <%= link_to "Access Now", "#{webinar_path}#families", :class=>"text-white text-decoration-none" %>
+            </div>
           </div>
         </div>
         <div class="col-12 col-lg-6 position-relative">
@@ -165,7 +167,7 @@
       <div class="mw-4xl mx-auto text-center">
         <h2 class="mt-3 text-white">Book A One-On-One Consultation</h2>
         <p class="mb-6 mw-2xl mx-auto lead text-light">Need a bit more help? We got you.</p>
-        <a class="btn btn-secondary d-block d-md-inline-block mb-2 mb-md-0 me-md-4" href="#">Schedule Now</a>
+        <a class="btn btn-secondary d-block d-md-inline-block mb-2 mb-md-0 me-md-4" href="/consultations">Schedule Now</a>
       </div>
     </div>
   </section>
