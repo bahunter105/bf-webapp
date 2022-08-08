@@ -18,6 +18,8 @@ class PagesController < ApplicationController
   end
 
   def workshops
+    moodle = MoodleRb.new(ENV["MOODLE_WEBSERVICES_TOKEN"], ENV["MOODLE_URL"])
+    @workshops = moodle.courses.index
   end
 
   def courses

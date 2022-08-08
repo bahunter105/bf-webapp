@@ -1,63 +1,70 @@
-<h1>Workshops</h1>
-  <div class="row search">
-    <div class="pull-left course-filter">
-      <div class="filter-label">
-        Category:
-      </div>
-      <div class="btn-group">
-        <button class="btn btn-default btn-lg btn-course-filter dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false" aria-controls="filter-dropdown">
-          All <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" role="menu" id="filter-dropdown">
-          <li><a href="https://learn.angelafehr.com/courses">All</a></li>
-          <li><a href="https://learn.angelafehr.com/courses/category/landscape-painting">landscape painting (1)</a></li>
-          <li><a href="https://learn.angelafehr.com/courses/category/members">members (1)</a></li>
-        </ul>
-      </div>
-    </div>
+<%= render "shared/navbar" %>
 
-    <div class="pull-left course-filter">
-      <div class="filter-label">
-        Author:
-      </div>
-      <div class="btn-group">
-        <button class="btn btn-default btn-lg btn-course-filter dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false" aria-controls="courses-dropdown">
+<div class="row search">
+  <div class="pull-left course-filter">
+    <div class="filter-label">
+      Category:
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-default btn-lg btn-course-filter dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false" aria-controls="filter-dropdown">
         All <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" role="menu" id="courses-dropdown">
-          <li><a href="https://learn.angelafehr.com/courses">All</a></li>
-          <li><a href="https://learn.angelafehr.com/courses/author/633527">Angela Fehr</a></li>
-          <li><a href="https://learn.angelafehr.com/courses/author/889">Angela Fehr</a></li>
-          <li><a href="https://learn.angelafehr.com/courses/author/1199597">Jade Steckly</a></li>
-          <li><a href="https://learn.angelafehr.com/courses/author/703759">Leslie Lambert</a></li>
-          <li><a href="https://learn.angelafehr.com/courses/author/703795">Leslie Lambert</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="col-lg-4 col-md-4 col-xs-12 pull-right">
-      <form role="search" method="get" action="https://learn.angelafehr.com/courses">
-        <div class="input-group">
-          <label for="search-courses" class="sr-only">Find a product</label>
-          <input class="form-control search input-lg" data-list=".list" id="search-courses" name="query" placeholder="Find a product" type="text">
-          <span class="input-group-btn">
-            <button aria-label="Search Courses" id="search-course-button" class="btn search btn-default btn-lg" type="submit"><i class="fa fa-search" title="Search"></i></button>
-          </span>
-        </div>
-      </form>
+      </button>
+      <ul class="dropdown-menu" role="menu" id="filter-dropdown">
+        <li><a href="https://learn.angelafehr.com/courses">All</a></li>
+        <li><a href="https://learn.angelafehr.com/courses/category/landscape-painting">landscape painting (1)</a></li>
+        <li><a href="https://learn.angelafehr.com/courses/category/members">members (1)</a></li>
+      </ul>
     </div>
   </div>
+
+  <div class="pull-left course-filter">
+    <div class="filter-label">
+      Author:
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-default btn-lg btn-course-filter dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false" aria-controls="courses-dropdown">
+      All <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu" id="courses-dropdown">
+        <li><a href="https://learn.angelafehr.com/courses">All</a></li>
+        <li><a href="https://learn.angelafehr.com/courses/author/633527">Angela Fehr</a></li>
+        <li><a href="https://learn.angelafehr.com/courses/author/889">Angela Fehr</a></li>
+        <li><a href="https://learn.angelafehr.com/courses/author/1199597">Jade Steckly</a></li>
+        <li><a href="https://learn.angelafehr.com/courses/author/703759">Leslie Lambert</a></li>
+        <li><a href="https://learn.angelafehr.com/courses/author/703795">Leslie Lambert</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="col-lg-4 col-md-4 col-xs-12 pull-right">
+    <form role="search" method="get" action="https://learn.angelafehr.com/courses">
+      <div class="input-group">
+        <label for="search-courses" class="sr-only">Find a product</label>
+        <input class="form-control search input-lg" data-list=".list" id="search-courses" name="query" placeholder="Find a product" type="text">
+        <span class="input-group-btn">
+          <button aria-label="Search Courses" id="search-course-button" class="btn search btn-default btn-lg" type="submit"><i class="fa fa-search" title="Search"></i></button>
+        </span>
+      </div>
+    </form>
+  </div>
+</div>
 
 
 <div class="container">
   <div class="row">
-    <% 8.times do %>
+    <% @workshops.each do |workshop| %>
+    <%# <% 8.times do %>
       <div class="col-xs-12 col-sm-6 col-md-4">
         <div class="card px-0 m-1 ">
           <img class="card-img-top" data-src="holder.js/100px200/" alt="100%x200" style="height: 200px; width: 100%; display: block;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22165%22%20height%3D%22200%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20165%20200%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_182685a30c6%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_182685a30c6%22%3E%3Crect%20width%3D%22165%22%20height%3D%22200%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2256.46666717529297%22%20y%3D%22104.05%22%3E165x200%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true">
           <div class="card-body">
-            <h5 class="card-title">Workshop Title</h5>
-            <p class="card-text">This is a summary of the workshop.</p>
+            <%# <h5 class="card-title">Workshop Title</h5> %>
+            <h5 class="card-title"><%= workshop["shortname"] %></h5>
+            <p class="card-text">
+              <%= workshop["summary"].slice(/>.+</) %>
+
+            </p>
+            <%# <p class="card-text">This is a summary of the workshop.</p> %>
             <div class="btn btn-primary"> <%= link_to "Enroll Now",  new_user_session_path, :class=>"text-white text-decoration-none" %> </div>
           </div>
         </div>
@@ -65,3 +72,4 @@
     <% end %>
   </div>
 </div>
+<%= render "shared/footer" %>
