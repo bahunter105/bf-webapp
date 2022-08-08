@@ -26,6 +26,7 @@ gem "simple_form", github: "heartcombo/simple_form"
 gem "autoprefixer-rails"
 gem "dotenv-rails", groups: [:development, :test]
 gem "devise"
+gem 'moodle_rb', '~> 2.1'
 
 
 
