@@ -1,90 +1,31 @@
 <%= render "shared/navbar" %>
-<div data-controller="popover">
+<%# <div data-controller="popover">
   <button type="button" class="btn btn-lg btn-danger" data-bs-toggle="popover" title="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button>
-</div>
-<!-- Button trigger modal -->
+</div> %>
 
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Launch demo modal
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="dropdown" data-controller="dropdownover">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Dropdown button
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#">Action</a>
-    <a class="dropdown-item" href="#">Another action</a>
-    <a class="dropdown-item" href="#">Something else here</a>
-  </div>
-</div>
-
-
-<div class="row search">
-  <div class="pull-left course-filter">
-    <div class="filter-label">
-      Category:
-    </div>
-    <div class="btn-group">
-      <button class="btn btn-default btn-lg btn-course-filter dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false" aria-controls="filter-dropdown">
-        All <span class="caret"></span>
+<div class="container">
+  <div class="row d-flex justify-content-between">
+    <div class="dropdown col-md-3 col-xs-12 my-1" data-controller="dropdownover">
+      <button class="btn btn-secondary dropdown-toggle w-100 h-100" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Category
       </button>
-      <ul class="dropdown-menu" role="menu" id="filter-dropdown">
-        <li><a href="https://learn.angelafehr.com/courses">All</a></li>
-        <li><a href="https://learn.angelafehr.com/courses/category/landscape-painting">landscape painting (1)</a></li>
-        <li><a href="https://learn.angelafehr.com/courses/category/members">members (1)</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="pull-left course-filter">
-    <div class="filter-label">
-      Author:
-    </div>
-    <div class="btn-group">
-      <button class="btn btn-default btn-lg btn-course-filter dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false" aria-controls="courses-dropdown">
-      All <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu" role="menu" id="courses-dropdown">
-        <li><a href="https://learn.angelafehr.com/courses">All</a></li>
-        <li><a href="https://learn.angelafehr.com/courses/author/633527">Angela Fehr</a></li>
-        <li><a href="https://learn.angelafehr.com/courses/author/889">Angela Fehr</a></li>
-        <li><a href="https://learn.angelafehr.com/courses/author/1199597">Jade Steckly</a></li>
-        <li><a href="https://learn.angelafehr.com/courses/author/703759">Leslie Lambert</a></li>
-        <li><a href="https://learn.angelafehr.com/courses/author/703795">Leslie Lambert</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="col-lg-4 col-md-4 col-xs-12 pull-right">
-    <form role="search" method="get" action="https://learn.angelafehr.com/courses">
-      <div class="input-group">
-        <label for="search-courses" class="sr-only">Find a product</label>
-        <input class="form-control search input-lg" data-list=".list" id="search-courses" name="query" placeholder="Find a product" type="text">
-        <span class="input-group-btn">
-          <button aria-label="Search Courses" id="search-course-button" class="btn search btn-default btn-lg" type="submit"><i class="fa fa-search" title="Search"></i></button>
-        </span>
+      <div class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="#">Cat 1</a>
+        <a class="dropdown-item" href="#">Cat 2</a>
+        <a class="dropdown-item" href="#">Cat 3</a>
       </div>
-    </form>
+    </div>
+    <div class="col-md-7 col-xs-12 my-1">
+      <form role="search" method="get" action="https://learn.angelafehr.com/courses">
+        <div class="input-group border rounded-1">
+          <label for="search-courses" class="sr-only">Find a workshop</label>
+          <input class="form-control search input-lg" data-list=".list" id="search-courses" name="query" placeholder="Find a workshop" type="text" style="border: none;margin-left: 0.5rem;">
+          <span class="input-group-btn">
+            <button aria-label="Search Courses" id="search-course-button" class="btn search btn-default btn-lg" type="submit"><i class="fa fa-search" title="Search"></i></button>
+          </span>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
 
