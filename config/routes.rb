@@ -14,8 +14,7 @@ Rails.application.routes.draw do
   get 'consultations', to: 'pages#consultations'
   get 'GWM', to: 'pages#grow_with_me'
 
+  resources :workshops, only: [:show]
   get 'workshops', to: 'workshops#workshops'
-  get "workshops/:id", to: "workshops#show"
-
 
 end
