@@ -27,7 +27,7 @@ gem "autoprefixer-rails"
 gem "dotenv-rails", groups: [:development, :test]
 gem "devise"
 gem 'moodle_rb', '~> 2.1'
-
+gem 'rails_admin', '~> 3.0'
 
 
 # Use Active Storage variant
