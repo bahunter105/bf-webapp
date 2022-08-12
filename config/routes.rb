@@ -18,4 +18,7 @@ Rails.application.routes.draw do
   resources :workshops, only: [:show]
   get 'workshops', to: 'workshops#workshops'
 
+  authenticate :user, ->(user) { user.admin? } do
+    mount Blazer::Engine, at: "blazer"
+  end
 end
