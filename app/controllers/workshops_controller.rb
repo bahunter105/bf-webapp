@@ -22,7 +22,9 @@ class WorkshopsController < ApplicationController
       end
     end
 
-    @workshops = Workshop.all
+    @q = Workshop.ransack(params[:q])
+    @workshops = @q.result(distinct: true)
+
   end
 
   def show

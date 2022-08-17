@@ -27,7 +27,7 @@ gem "autoprefixer-rails"
 gem "dotenv-rails", groups: [:development, :test]
 gem "devise"
 gem 'moodle_rb', '~> 2.1'
-
+gem 'ransack'
 
 
 # Use Active Storage variant

@@ -16,15 +16,24 @@
       </div>
     </div>
     <div class="col-md-7 col-xs-12 my-1">
-      <form role="search" method="get" action="">
+      <%= search_form_for @q, :html => {:class => "input-group border rounded-1"} do |f| %>
+        <%# <%= f.label "Find a workshop" %>
+        <%= f.search_field :fullname_or_summary_cont,:class => "form-control search input-lg border-0", :placeholder => "Find a workshop"  %>
+        <%# <%= f.submit <i class="fa fa-search" title="Search"></i>< %>
+        <%= button_tag type: 'submit', class: "btn search btn-default btn-lg" do %>
+          <i class="fa fa-search" title="Search"></i>
+        <% end %>
+      <% end %>
+
+      <%# <form role="search" method="get" action="">
         <div class="input-group border rounded-1">
           <label for="search-courses" class="sr-only">Find a workshop</label>
-          <input class="form-control search input-lg" data-list=".list" id="search-courses" name="query" placeholder="Find a workshop " type="text" style="border: none;margin-left: 0.5rem;">
+          <input class="form-control search input-lg" data-list=".list" id="search-courses" name="query" placeholder="Find a workshop" type="text" style="border: none;margin-left: 0.5rem;">
           <span class="input-group-btn">
             <button aria-label="Search Courses" id="search-course-button" class="btn search btn-default btn-lg" type="submit"><i class="fa fa-search" title="Search"></i></button>
           </span>
         </div>
-      </form>
+      </form> %>
     </div>
   </div>
 </div>
