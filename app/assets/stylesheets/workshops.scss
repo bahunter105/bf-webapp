@@ -1,3 +1,17 @@
 // Place all the styles related to the workshops controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+form>input {
+  background-color: inherit;
+}
+
+form>select {
+  color: gray;
+  background-color: inherit;
+  border: none;
+  padding-right: 0px;
+  padding-left: 0;
+  margin-left: .5rem;
+  margin-right: 2rem;
+}
