@@ -9,7 +9,7 @@
     </div>
   </div>
 </section>
-<div style="padding:60.69% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/740325291?h=b5efb52e53&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="New Recording - 8/17/2022, 1:08:13 PM"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+
 <section class="overflow-hidden py-5 bg-light">
   <div class="container">
     <div class="row align-items-center mb-5 mb-lg-0">
@@ -48,12 +48,16 @@
         </div>
       </div>
         <div class="col-lg-2"></div>
-      <div class="position-relative col-12 col-lg-5" style="height: 28rem; background-image: url('https://images.unsplash.com/photo-1534224563519-fea04849cadf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80'); background-repeat: no-repeat; background-size: cover; background-position: center;">
-        <a href="#">
-          <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark d-flex align-items-center justify-content-center " style="opacity: 75%;">
+      <div data-controller="vidcontrol" class="position-relative col-12 col-lg-5" style="height: 28rem; background-image: url('https://images.unsplash.com/photo-1534224563519-fea04849cadf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80'); background-repeat: no-repeat; background-size: cover; background-position: center;">
+        <a href= "javascript:;" data-action="click->vidcontrol#play" >
+          <div data-vidcontrol-target="linkbtn" class="position-absolute top-0 start-0 w-100 h-100 bg-dark d-flex align-items-center justify-content-center " style="opacity: 75%;">
               <i class="fa-regular fa-circle-play text-white opacity-50" style="font-size: 100px;"></i>
           </div>
         </a>
+        <div data-vidcontrol-target="video" style="padding:60.69% 0 0 0;position:relative; left: 50%; top: 50%; transform: translateX(-50%)translateY(-50%); display:none;">
+          <iframe id="my-iframe" src="https://player.vimeo.com/video/740325291?h=b5efb52e53&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="New Recording - 8/17/2022, 1:08:13 PM"></iframe>
+        </div>
+        <script src="https://player.vimeo.com/api/player.js"></script>
       </div>
     </div>
   </div>
