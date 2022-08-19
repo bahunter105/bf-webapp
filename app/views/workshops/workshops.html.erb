@@ -18,7 +18,7 @@
     <div class="col-xs-12 my-1 d-flex justify-content-between">
       <%= search_form_for @q, :html => {:class => "input-group border rounded-1"} do |f| %>
         <%# <%= f.label "Find a workshop" %>
-        <%= f.select :category_cont, ["Families", "Educators"]%>
+        <%= f.select :category_cont, ["Families", "Educators"], :prompt => "Category"%>
         <%= f.search_field :fullname_or_summary_cont,:class => "input-lg border-0 flex-grow-1 text-gray", :placeholder => "Find a workshop"  %>
         <%# <%= f.search_field :category_cont,:class => "form-control search input-lg border-0", :placeholder => "Find a workshop"  %>
         <%# <%= f.submit <i class="fa fa-search" title="Search"></i>< %>
@@ -41,13 +41,14 @@
 </div>
 
 
-<div class="container">
+<div class="container py-4">
+  <%= sort_link(@q, :shortname, 'Sort by Course Name', default_order: :asc, :class=>"text-muted") %>
   <div class="row">
     <% @workshops.each do |workshop| %>
     <%# <% 8.times do %>
       <div class="col-xs-12 col-sm-6 col-md-4">
         <%= link_to workshop_path(workshop), class: "text-decoration-none" do %>
-          <div class="card px-0 m-1 ">
+          <div class="card px-0 m-1 my-3">
             <div class="position-relative col-12 col-lg-5" alt="" style="height: 200px; width: 100%; display: block; background-image: url('https://images.unsplash.com/photo-1542330952-bffc55e812b2?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=750&amp;q=80'); background-repeat: no-repeat; background-size: cover; background-position: top center;">
                 <%# <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark d-flex align-items-center justify-content-center " style="opacity: 75%;"></div> %>
             </div>
