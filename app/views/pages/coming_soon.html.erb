@@ -1,5 +1,10 @@
 
 <div class="cover-container d-flex align-items-center justify-content-center w-100 p-3 mx-auto flex-column text-center text-white" style="height: 100vh; background:#fffbff">
+    <% if current_user %>
+      <h3><%= current_user.name %></h3>
+      <h3><%= current_user.email %></h3>
+      <%= image_tag(current_user.image) unless current_user.image.nil? %>
+    <% end %>
     <div>
       <%= image_tag "logo_w_bg.png", alt: "Bright Futures Logo", width: 250 %>
       <h1 class="text-dark pt-4">Coming Soon!</h1>

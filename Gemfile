@@ -28,7 +28,7 @@ gem "dotenv-rails", groups: [:development, :test]
 gem "devise"
 gem 'moodle_rb', '~> 2.1'
 gem 'ransack', :github => 'activerecord-hackery/ransack', :branch => 'main'
-
+gem 'omniauth-google-oauth2'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
