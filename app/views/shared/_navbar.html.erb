@@ -12,7 +12,11 @@
     </ul>
     <div class="d-none d-lg-block">
       <a class="btn me-2 btn-primary text-white text-decoration-none" href="/workshops"> <i class="fa-solid fa-magnifying-glass"></i> Find A Workshop</a>
-      <div class="btn btn-secondary"> <%= link_to "Sign In",  new_user_session_path, :class=>"text-white text-decoration-none" %> </div>
+      <% if user_signed_in? %>
+        <div class="btn btn-secondary"> <%= link_to "Log Out",  destroy_user_session_path, :class=>"text-white text-decoration-none", :method=>"Delete" %> </div>
+      <% else %>
+        <div class="btn btn-secondary"> <%= link_to "Sign In",  new_user_session_path, :class=>"text-white text-decoration-none" %> </div>
+      <% end %>
     </div>
   </div>
 </nav>
@@ -23,7 +27,11 @@
     <li class="nav-item nav-link"> <%= link_to "Educators", "#{home_educators_path}#es", :class=>"small text-muted text-decoration-none" %> </li>
     <li class="nav-item nav-link border-top align-self-center"></li>
     <li class="nav-item nav-link">
-      <div class="btn btn-secondary"> <%= link_to "Sign In",  new_user_session_path, :class=>"text-white text-decoration-none" %> </div>
+      <% if user_signed_in? %>
+        <div class="btn btn-secondary"> <%= link_to "Log Out",  destroy_user_session_path, :class=>"text-white text-decoration-none", :method=>"Delete" %> </div>
+      <% else %>
+        <div class="btn btn-secondary"> <%= link_to "Sign In",  new_user_session_path, :class=>"text-white text-decoration-none" %> </div>
+      <% end %>
     </li>
     <li class="nav-item nav-link">
       <a class="btn btn-primary text-white text-decoration-none" href="/workshops"> <i class="fa-solid fa-magnifying-glass"></i> Find A Workshop</a>
