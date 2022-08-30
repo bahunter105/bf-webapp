@@ -1,6 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!
-  # , only: [:coming_soon, :home]
+  skip_before_action :authenticate_user!, only: [:coming_soon, :home, :family_home, :educator_home, :webinar, :courses, :about, :contact_us]
 
   def coming_soon
   end
@@ -35,4 +34,7 @@ class PagesController < ApplicationController
   def grow_with_me
   end
 
+  def account
+    @user = current_user
+  end
 end

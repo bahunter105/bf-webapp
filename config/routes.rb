@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get 'contact', to: 'pages#contact_us'
   get 'consultations', to: 'pages#consultations'
   get 'GWM', to: 'pages#grow_with_me'
+  get 'account', to: 'pages#account'
 
   resources :workshops, only: [:show]
   get 'workshops', to: 'workshops#workshops'
