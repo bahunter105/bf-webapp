@@ -1,0 +1,16 @@
+// Place all the styles related to the cookies controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.cookies-modal {
+  position: absolute;
+  padding: 0.5rem;
+  z-index: 2;
+  left: 0.5rem;
+  bottom: 0.5rem;
+  min-width: 50%;
+  max-width: 24rem;
+  word-break: break-word;
+  border-radius: 6px;
+  background: #bad5ff;
+}

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'cookies/index'
   devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: 'pages#coming_soon'
@@ -14,6 +15,8 @@ Rails.application.routes.draw do
   get 'consultations', to: 'pages#consultations'
   get 'GWM', to: 'pages#grow_with_me'
   get 'account', to: 'pages#account'
+
+  get 'cookies', to: 'cookies#index'
 
   resources :workshops, only: [:show]
   get 'workshops', to: 'workshops#workshops'
