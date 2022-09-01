@@ -5,7 +5,6 @@ class PagesController < ApplicationController
   end
 
   def home
-    session[:cookies_accepted] = nil
   end
 
   def family_home
