@@ -1,0 +1,5 @@
+<turbo-frame id="bookmark_1">
+  <%= button_to bookmarks_path, method: :post, params: {  :user_id => current_user.id, :workshop_id=> workshop.id } do %>
+    <i class="fa-solid fa-bookmark text-primary"></i>
+  <% end %>
+</turbo-frame>

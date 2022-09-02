@@ -74,7 +74,10 @@
                 </div>
               </div>
                 <turbo-frame id="bookmark_1">
-                  <%= button_to '+', bookmarks_path, method: :post, params: {  :user_id => current_user.id, :workshop_id=> workshop.id } %>
+                  <%# <%= button_to {<i class="btn fa-regular fa-bookmark text-primary"></i>}, bookmarks_path, method: :post, params: {  :user_id => current_user.id, :workshop_id=> workshop.id } %> %>
+                  <%= button_to bookmarks_path, method: :post, params: {  :user_id => current_user.id, :workshop_id=> workshop.id } do %>
+                    <i class="fa-regular fa-bookmark text-primary"></i>
+                  <% end %>
                 </turbo-frame>
             </div>
           </div>
