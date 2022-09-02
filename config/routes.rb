@@ -18,6 +18,9 @@ Rails.application.routes.draw do
 
   get 'cookies', to: 'cookies#index'
 
+  resources :bookmarks, only: [:index, :show, :destroy]
+  post 'bookmarks', to: 'bookmarks#create'
+
   resources :workshops, only: [:show]
   get 'workshops', to: 'workshops#workshops'
 

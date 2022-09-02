@@ -42,29 +42,54 @@
 
 
 <div class="container py-4">
+  <div class="d-flex justify-content-between">
   <%= sort_link(@q, :shortname, 'Sort by Course Name', default_order: :asc, :class=>"text-muted") %>
+  <div class="row">
+    <% if !user_signed_in? %>
+    <% else %>
+      <%= link_to 'Your Favorites', {fav: 1}, :class=>"text-muted col-12 col-sm-6 text-center text-nowrap" %>
+    <% end %>
+    <%= link_to 'Clear Search',workshops_path, :class=>"text-muted col-12 col-sm-6 text-center text-nowrap" %>
+  </div>
+  </div>
   <div class="row">
     <% @workshops.each do |workshop| %>
     <%# <% 8.times do %>
       <div class="col-xs-12 col-sm-6 col-md-4">
-        <%= link_to workshop_path(workshop), class: "text-decoration-none" do %>
           <div class="card px-0 m-1 my-3">
-            <div class="position-relative col-12 col-lg-5" alt="" style="height: 200px; width: 100%; display: block; background-image: url('https://images.unsplash.com/photo-1542330952-bffc55e812b2?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=750&amp;q=80'); background-repeat: no-repeat; background-size: cover; background-position: top center;">
-                <%# <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark d-flex align-items-center justify-content-center " style="opacity: 75%;"></div> %>
-            </div>
-            <%# <img class="card-img-top" data-src="holder.js/100px200/" alt="100%x200" style="height: 200px; width: 100%; display: block;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22165%22%20height%3D%22200%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20165%20200%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_182685a30c6%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_182685a30c6%22%3E%3Crect%20width%3D%22165%22%20height%3D%22200%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2256.46666717529297%22%20y%3D%22104.05%22%3E165x200%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true"> %>
-            <div class="card-body">
-              <%# <h5 class="card-title">Workshop Title</h5> %>
-              <h5 class="card-title"><%= workshop.shortname %></h5>
-              <p class="card-text">
-                <%= workshop.summary %>
+            <%= link_to workshop_path(workshop), class: "text-decoration-none" do %>
+              <div class="position-relative col-12 col-lg-5" alt="" style="height: 200px; width: 100%; display: block; background-image: url('https://images.unsplash.com/photo-1542330952-bffc55e812b2?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=750&amp;q=80'); background-repeat: no-repeat; background-size: cover; background-position: top center;">
+                  <%# <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark d-flex align-items-center justify-content-center " style="opacity: 75%;"></div> %>
+              </div>
+              <%# <img class="card-img-top" data-src="holder.js/100px200/" alt="100%x200" style="height: 200px; width: 100%; display: block;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22165%22%20height%3D%22200%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20165%20200%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_182685a30c6%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_182685a30c6%22%3E%3Crect%20width%3D%22165%22%20height%3D%22200%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2256.46666717529297%22%20y%3D%22104.05%22%3E165x200%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true"> %>
+              <div class="card-body">
+                <%# <h5 class="card-title">Workshop Title</h5> %>
+                <h5 class="card-title"><%= workshop.shortname %></h5>
+                <p class="card-text">
+                  <%= workshop.summary %>
 
-              </p>
-              <%# <p class="card-text">This is a summary of the workshop.</p> %>
-              <div class="btn btn-primary"> <%= link_to "Enroll Now",  new_user_session_path, :class=>"text-white text-decoration-none" %> </div>
+                </p>
+                <%# <p class="card-text">This is a summary of the workshop.</p> %>
+              <% end %>
+              <div class="d-flex justify-content-between align-content-center" >
+                <div class="btn btn-primary"> <%= link_to "Enroll Now",  new_user_session_path, :class=>"text-white text-decoration-none" %> </div>
+                <turbo-frame id="bookmark_1" class="d-flex align-content-center" >
+                  <% if !user_signed_in? %>
+                    <div></div>
+                  <% elsif current_user.workshops.include?(workshop) %>
+                    <% current_bookmark = current_user.bookmarks.find_by workshop:workshop %>
+                    <%= button_to bookmark_path(current_bookmark), method: :delete do %>
+                      <i class="fa-solid fa-bookmark text-primary" style="font-size: 20px;"></i>
+                    <% end %>
+                  <% else %>
+                    <%= button_to bookmarks_path, method: :post, params: {  :user_id => current_user.id, :workshop_id=> workshop.id } do %>
+                      <i class="fa-regular fa-bookmark text-primary" style="font-size: 20px;"></i>
+                    <% end %>
+                  <% end %>
+                </turbo-frame>
+              </div>
             </div>
           </div>
-        <% end %>
       </div>
     <% end %>
   </div>
