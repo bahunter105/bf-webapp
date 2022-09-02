@@ -1,9 +1,8 @@
 <turbo-frame id="bookmark_1">
-  <h1>Hi</h1>
-  <%# <%= button_to bookmark_path, method: :delete do %>
-    <%# <i class="fa-regular fa-bookmark text-primary"></i> %>
-  <%# <% end %>
-  <%= link_to "Delete",
+  <%= button_to bookmark_path(@bookmark), method: :delete do %>
+    <i class="fa-solid fa-bookmark text-primary" style="font-size: 20px;"></i>
+  <% end %>
+  <%# <%= link_to "Delete",
   bookmark_path(@bookmark),
-  data: {turbo_method: :destroy} %>
+  method: :delete %>
 </turbo-frame>
