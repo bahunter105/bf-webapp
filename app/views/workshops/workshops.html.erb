@@ -42,7 +42,16 @@
 
 
 <div class="container py-4">
+  <div class="d-flex justify-content-between">
   <%= sort_link(@q, :shortname, 'Sort by Course Name', default_order: :asc, :class=>"text-muted") %>
+  <div class="row">
+    <% if !user_signed_in? %>
+    <% else %>
+      <%= link_to 'Your Favorites', {fav: 1}, :class=>"text-muted col-12 col-sm-6 text-center text-nowrap" %>
+    <% end %>
+    <%= link_to 'Clear Search',workshops_path, :class=>"text-muted col-12 col-sm-6 text-center text-nowrap" %>
+  </div>
+  </div>
   <div class="row">
     <% @workshops.each do |workshop| %>
     <%# <% 8.times do %>
