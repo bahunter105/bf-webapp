@@ -31,9 +31,7 @@ class WorkshopsController < ApplicationController
     end
     @q = Workshop.ransack(params[:q])
     @workshops = @q.result(distinct: true)
-    @h='hi'
     if params[:fav] == '1'
-      @h='bye'
       @workshops = @workshops.joins(:bookmarks).where("user_id = #{current_user.id}")
     end
   end
