@@ -29,6 +29,8 @@ gem "devise"
 gem 'moodle_rb', '~> 2.1'
 gem 'ransack', :github => 'activerecord-hackery/ransack', :branch => 'main'
 gem 'turbo-rails'
+gem 'money-rails'
+
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
