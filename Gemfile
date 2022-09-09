@@ -30,6 +30,7 @@ gem 'moodle_rb', '~> 2.1'
 gem 'ransack', :github => 'activerecord-hackery/ransack', :branch => 'main'
 gem 'turbo-rails'
 gem 'money-rails'
+gem 'stripe'
 
 
 # Use Active Storage variant
