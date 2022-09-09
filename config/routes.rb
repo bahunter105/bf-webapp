@@ -24,7 +24,9 @@ Rails.application.routes.draw do
   resources :workshops, only: [:show]
   get 'workshops', to: 'workshops#workshops'
 
-  resources :orders, only: [:show, :create]
+  resources :orders, only: [:show, :create] do
+      resources :payments, only: :new
+  end
 
 
 end
