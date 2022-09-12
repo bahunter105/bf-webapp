@@ -25,7 +25,8 @@ class OrdersController < ApplicationController
           unit_amount: workshop.price_cents,
         },
         quantity: 1,
-      }],
+      }
+    ],
       mode: 'payment',
       success_url: order_url(order),
       cancel_url: order_url(order),

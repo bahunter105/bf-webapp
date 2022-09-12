@@ -2,7 +2,15 @@
 <%# <div data-controller="popover">
   <button type="button" class="btn btn-lg btn-danger" data-bs-toggle="popover" title="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button>
 </div> %>
-
+<h1>Shopping cart</h1>
+Items:
+<%= @cart.size %>
+<br>
+<% @cart.each do |cart_item| %>
+  <br>
+  <%= cart_item.shortname %>
+  <%= link_to "x", remove_from_cart_path(cart_item), method: :delete %>
+<% end %>
 <div class="container">
   <div class="row d-flex justify-content-between">
     <%# <div class="dropdown col-md-3 col-xs-12 my-1" data-controller="dropdownover">
@@ -73,6 +81,11 @@
               <% end %>
               <div class="d-flex justify-content-between align-content-center" >
                 <div class="btn btn-primary"> <%= link_to "Enroll Now",  new_user_session_path, :class=>"text-white text-decoration-none" %> </div>
+                <% if @cart.include?(workshop) %>
+                  <%= button_to "Remove from cart", remove_from_cart_path(workshop), method: :delete %>
+                <% else %>
+                  <%= button_to "Add to cart", add_to_cart_path(workshop) %>
+                <% end %>
                 <turbo-frame id="bookmark_1" class="d-flex align-content-center" >
                   <% if !user_signed_in? %>
                     <div></div>

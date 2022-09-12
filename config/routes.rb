@@ -24,6 +24,8 @@ Rails.application.routes.draw do
 
   resources :workshops, only: [:show]
   get 'workshops', to: 'workshops#workshops'
+  post "workshops/add_to_cart/:id", to: "workshops#add_to_cart", as: "add_to_cart"
+  delete "workshops/remove_from_cart/:id", to: "workshops#remove_from_cart", as: "remove_from_cart"
 
   resources :orders, only: [:show, :create] do
       resources :payments, only: :new
