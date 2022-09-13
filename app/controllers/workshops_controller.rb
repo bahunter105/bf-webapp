@@ -44,13 +44,13 @@ class WorkshopsController < ApplicationController
 
   def add_to_cart
     id = params[:id].to_i
-    session[:cart] << id unless session[:cart].include?(id)
+    session[:ws_cart] << id unless session[:ws_cart].include?(id)
     redirect_to workshops_path
   end
 
   def remove_from_cart
     id = params[:id].to_i
-    session[:cart].delete(id)
+    session[:ws_cart].delete(id)
     redirect_to workshops_path
   end
 

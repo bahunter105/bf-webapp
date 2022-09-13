@@ -23,6 +23,13 @@
       <% else %>
         <div class="btn btn-secondary"> <%= link_to "Sign In",  new_user_session_path, :class=>"text-white text-decoration-none" %> </div>
       <% end %>
+      <div>
+          <% if @cart.size >= 1  %>
+          <div class="btn btn-secondary">
+            <i class="fa-solid fa-cart-shopping text-white text-decoration-none"></i>
+          </div>
+          <% end %>
+      </div>
     </div>
   </div>
 </nav>

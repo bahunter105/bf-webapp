@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_09_175619) do
+ActiveRecord::Schema.define(version: 2022_09_12_233932) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,11 +30,19 @@ ActiveRecord::Schema.define(version: 2022_09_09_175619) do
     t.string "amount_currency", default: "USD", null: false
     t.string "checkout_session_id"
     t.bigint "user_id", null: false
-    t.bigint "workshop_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_orders_on_user_id"
-    t.index ["workshop_id"], name: "index_orders_on_workshop_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.bigint "order_id", null: false
+    t.bigint "workshop_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "price_cents", default: 0, null: false
+    t.index ["order_id"], name: "index_products_on_order_id"
+    t.index ["workshop_id"], name: "index_products_on_workshop_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -48,7 +56,6 @@ ActiveRecord::Schema.define(version: 2022_09_09_175619) do
     t.string "first_name"
     t.string "last_name"
     t.string "username"
-    t.boolean "admin", default: false, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -68,5 +75,6 @@ ActiveRecord::Schema.define(version: 2022_09_09_175619) do
   add_foreign_key "bookmarks", "users"
   add_foreign_key "bookmarks", "workshops"
   add_foreign_key "orders", "users"
-  add_foreign_key "orders", "workshops"
+  add_foreign_key "products", "orders"
+  add_foreign_key "products", "workshops"
 end

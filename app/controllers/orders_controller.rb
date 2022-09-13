@@ -1,7 +1,30 @@
 class OrdersController < ApplicationController
   def create
     workshop = Workshop.find(params[:workshop_id])
-    order = Order.create!(workshop: workshop, amount: workshop.price, state: 'pending', user: current_user)
+    # order = Order.new
+    # order.user = current_user
+    # order.state = 'pending'
+    # order.save
+    # product = Product.new
+    # product.order_id = order.id
+    # product.workshop_id = workshop.id
+    # product.price_cents = workshop.price_cents
+    # order.amount_cents = product.price_cents
+    # order.save
+
+    workshop = Workshop.first
+    order = Order.new
+    order.user = User.first
+    order.state = 'pending'
+    order.save
+    product = Product.new
+    product.order = order
+    product.workshop = workshop
+    product.price_cents = workshop.price_cents
+    product.save
+    order.amount_cents = product.price_cents
+    order.products << product
+    order.save
 
     # session = Stripe::Checkout::Session.create(
     #   payment_method_types: ['card'],

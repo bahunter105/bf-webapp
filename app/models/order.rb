@@ -1,5 +1,6 @@
 class Order < ApplicationRecord
   belongs_to :user
-  belongs_to :workshop
+  has_many :products
+  has_many :workshops, through: :products
   monetize :amount_cents
 end

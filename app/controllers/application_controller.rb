@@ -30,11 +30,15 @@ class ApplicationController < ActionController::Base
   end
 
   def initialize_session_cart
-    session[:cart] ||= [] # empty cart = empty array
+    session[:ws_cart] ||= [] # empty cart = empty array
   end
 
   def load_cart
-    @cart = Workshop.find(session[:cart])
+    @cart = []
+    workshops = Workshop.find(session[:ws_cart])
+    workshops.each do |workshop|
+      @cart << workshop
+    end
   end
 
 
