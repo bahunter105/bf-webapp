@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   post "workshops/add_to_cart/:id", to: "workshops#add_to_cart", as: "add_to_cart"
   delete "workshops/remove_from_cart/:id", to: "workshops#remove_from_cart", as: "remove_from_cart"
 
+  get 'create_shopping_cart_order', to: 'orders#create_shopping_cart_order'
   resources :orders, only: [:show, :create] do
       resources :payments, only: :new
   end

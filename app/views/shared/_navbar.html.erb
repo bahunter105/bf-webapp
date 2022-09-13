@@ -24,11 +24,15 @@
         <div class="btn btn-secondary"> <%= link_to "Sign In",  new_user_session_path, :class=>"text-white text-decoration-none" %> </div>
       <% end %>
       <div>
-          <% if @cart.size >= 1  %>
+        <% if @cart.size >= 1  %>
+
+
           <div class="btn btn-secondary">
+          <%= link_to(create_shopping_cart_order_path) do %>
             <i class="fa-solid fa-cart-shopping text-white text-decoration-none"></i>
-          </div>
           <% end %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
