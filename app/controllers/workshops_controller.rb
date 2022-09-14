@@ -54,4 +54,17 @@ class WorkshopsController < ApplicationController
     redirect_to workshops_path
   end
 
+  def add_to_cart_ws_page
+    workshop = Workshop.find(params[:id])
+    id = params[:id].to_i
+    session[:ws_cart] << id unless session[:ws_cart].include?(id)
+    redirect_to workshops_path(workshop)
+  end
+
+  def remove_from_cart_cart_page
+    id = params[:id].to_i
+    session[:ws_cart].delete(id)
+    redirect_to cart_path
+  end
+
 end
