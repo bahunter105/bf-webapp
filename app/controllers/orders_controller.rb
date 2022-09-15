@@ -106,6 +106,35 @@ class OrdersController < ApplicationController
 
   def show
     @order = current_user.orders.find(params[:id])
+    user = current_user
+    if @order.state == 'paid' && @order.workshops.any?
+      moodle = MoodleRb.new(ENV['MOODLE_WEBSERVICES_TOKEN'], ENV['MOODLE_URL'])
+      # check for user in moodle
+      if user.moodle_id.nil?
+        # generate password
+        o = [('a'..'z'), ('A'..'Z'),%i[~ ! @ # $ % ^ & * ( ) _ +]].map(&:to_a).flatten
+        moodle_password = (0...8).map { o[rand(o.length)] }.join
+
+        moodle_user = moodle.users.create(
+          :username => user.email,
+          :password => moodle_password,
+          :firstname => user.first_name,
+          :lastname => user.last_name,
+          :email => user.email,
+        )
+        # response {"id"=>10, "username"=>"testy2@gmail.cs"}
+        user.moodle_id = moodle_user["id"]
+        user.moodle_password = moodle_password
+        user.save
+      end
+
+      @order.workshops.each do |workshop|
+        moodle.enrolments.create(
+          :user_id => user.moodle_id,
+          :course_id => workshop.moodle_id,
+        )
+      end
+    end
   end
 
   def to_builder

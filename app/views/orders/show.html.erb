@@ -9,6 +9,7 @@
         <%# <li><strong>WORKSHOP</strong> <%= @order.workshops.first.shortname</li> %>
         <li><strong>TOTAL</strong> <%= humanized_money_with_symbol @order.amount %></li>
         </li>
+        <li><strong>Moodle Password</strong> <%= current_user.moodle_password %></li>
       </ul>
     </div>
   </div>
