@@ -37,5 +37,7 @@ class PagesController < ApplicationController
 
   def account
     @user = current_user
+    all_workshops = Workshop.all
+    @workshops = all_workshops.joins(:bookmarks).where("user_id = #{current_user.id}")
   end
 end
