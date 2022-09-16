@@ -1,0 +1,11 @@
+<h1>Shopping cart</h1>
+Items:
+<%= @cart.size %>
+<br>
+<% @cart.each do |cart_item| %>
+  <br>
+  <%= cart_item.shortname %>
+  <%= link_to "x", remove_from_cart_cart_page_path(cart_item), method: :delete %>
+<% end %>
+
+<%= link_to "Proceed to Payment",  create_shopping_cart_order_path, :class=>"btn btn-secondary text-white text-decoration-none" %></li>

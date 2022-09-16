@@ -6,5 +6,7 @@ class User < ApplicationRecord
 
   has_many :bookmarks, dependent: :destroy
   has_many :workshops, through: :bookmarks
+  has_many :orders
+  has_many :products, through: :orders
   validates :first_name, :last_name, presence: true
 end

@@ -25,3 +25,10 @@ nav ul li a:hover {
   text-decoration: underline;
   color: var(--color-primary-light);
 }
+
+.badge-notify {
+  background: #e60505;
+  position: relative;
+  top: -17px;
+  left: -16px;
+}

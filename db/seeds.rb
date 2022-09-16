@@ -21,8 +21,11 @@ end
 puts "Finished!"
 
 puts "Creating workshops..."
-ws1 = {fullname: 'DB Test WS ', shortname: 'DB Test', summary: 'An Awesome Test', language: 'English', category: "families"}
-ws2 = {fullname: 'DB Seed WS ', shortname: 'DB Seeding', summary: 'DB Seeding', language: 'English', category: "educators"}
+ws1 = {fullname: 'DB Test WS ', shortname: 'DB Test', summary: 'An Awesome Test', language: 'English', category: "families", price_cents: 7500}
+ws2 = {fullname: 'DB Seed WS ', shortname: 'DB Seeding', summary: 'DB Seeding', language: 'English', category: "educators", price_cents: 6700}
+ws3 = {fullname: 'DB Test WS -2 ', shortname: 'DB Test -2', summary: 'An Awesome Second Test', language: 'English', category: "families", price_cents: 7500}
+ws4 = {fullname: 'DB Seed WS -2', shortname: 'DB Seeding -2', summary: 'DB Second Seeding', language: 'English', category: "educators", price_cents: 6700}
+
 
 [ws1, ws2].each do |attributes|
   ws = Workshop.create!(attributes)

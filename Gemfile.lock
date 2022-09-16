@@ -141,10 +141,20 @@ GEM
     mime-types-data (3.2022.0105)
     mini_mime (1.1.2)
     minitest (5.16.2)
+    monetize (1.12.0)
+      money (~> 6.12)
+    money (6.16.0)
+      i18n (>= 0.6.4, <= 2)
+    money-rails (1.15.0)
+      activesupport (>= 3.0)
+      monetize (~> 1.9)
+      money (~> 6.13)
+      railties (>= 3.0)
     moodle_rb (2.1.0)
       httparty (>= 0.11.0)
     msgpack (1.5.3)
     multi_xml (0.6.0)
+    ngrok-tunnel (2.1.1)
     nio4r (2.5.8)
     nokogiri (1.13.7-x86_64-darwin)
       racc (~> 1.4)
@@ -155,6 +165,9 @@ GEM
     public_suffix (4.0.7)
     puma (5.6.4)
       nio4r (~> 2.0)
+    puma-ngrok-tunnel (1.2.0)
+      ngrok-tunnel (~> 2.1, >= 2.1.1)
+      puma (>= 3, < 6)
     racc (1.6.0)
     rack (2.2.4)
     rack-mini-profiler (2.3.4)
@@ -224,6 +237,10 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
+    stripe (7.1.0)
+    stripe_event (2.6.0)
+      activesupport (>= 3.1)
+      stripe (>= 2.8, < 8)
     thor (1.2.1)
     tilt (2.0.10)
     turbo-rails (1.1.1)
@@ -273,9 +290,11 @@ DEPENDENCIES
   font-awesome-sass (~> 6.1)
   jbuilder (~> 2.7)
   listen (~> 3.3)
+  money-rails
   moodle_rb (~> 2.1)
   pg (~> 1.1)
   puma (~> 5.0)
+  puma-ngrok-tunnel
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.6)
   ransack!
@@ -284,6 +303,8 @@ DEPENDENCIES
   selenium-webdriver (>= 4.0.0.rc1)
   simple_form!
   spring
+  stripe
+  stripe_event
   turbo-rails
   turbolinks (~> 5)
   tzinfo-data

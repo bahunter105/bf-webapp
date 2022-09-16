@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   before_action :store_user_location!, if: :storable_location?
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :initialize_session_cart
+  before_action :load_cart
 
   def configure_permitted_parameters
     # For additional fields in app/views/devise/registrations/new.html.erb
@@ -26,5 +28,18 @@ class ApplicationController < ActionController::Base
     # :user is the scope we are authenticating
     store_location_for(:user, request.fullpath)
   end
+
+  def initialize_session_cart
+    session[:ws_cart] ||= [] # empty cart = empty array
+  end
+
+  def load_cart
+    @cart = []
+    workshops = Workshop.find(session[:ws_cart])
+    workshops.each do |workshop|
+      @cart << workshop
+    end
+  end
+
 
 end

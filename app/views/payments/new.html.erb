@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row py-4">
+    <%# <div class="col-md-3"><%= image_tag @order.worksop.photo_url, width: '100%'</div> %>
+    <div class="col">
+      <h1>Checkout summary</h1>
+
+      <% @order.products. each do |product|%>
+        <p>Purchase of <strong><%= product.workshop.shortname %></strong> for <strong><%= humanized_money_with_symbol product.price %></strong></p>
+      <% end %>
+      <button id="pay" class="btn btn-primary">Pay</button>
+      <script src="https://js.stripe.com/v3/"></script>
+      <script>
+        const paymentBtn = document.getElementById('pay');
+        paymentBtn.addEventListener('click', () => {
+          const stripe = Stripe('<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>');
+          stripe.redirectToCheckout({
+            sessionId: '<%= @order.checkout_session_id %>'
+          });
+        });
+      </script>
+    </div>
+  </div>
+</div>
+<%# @force_refresh = true to refresh page for stripe payment. Workaround for turbolinks reload %>
+<% @force_refresh = true %>
