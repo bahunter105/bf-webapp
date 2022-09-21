@@ -1,11 +1,55 @@
-<h1>Shopping cart</h1>
-Items:
-<%= @cart.size %>
-<br>
-<% @cart.each do |cart_item| %>
-  <br>
-  <%= cart_item.shortname %>
-  <%= link_to "x", remove_from_cart_cart_page_path(cart_item), method: :delete %>
-<% end %>
+<div class="container">
+  <div class="row py-4">
+    <div class="col">
+      <div class="row text-center">
+        <h1>Shopping Cart</h1>
+      </div>
+      <div class="row py-5">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-9">
+          <table class="table table-hover table-sm">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Product</th>
+                <th scope="col">Units</th>
+                <th scope="col">Cost per Unit</th>
+                <th scope="col">Total</th>
+                <th scope="col">Remove</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% index = 0 %>
+            <% @cart.each do |cart_item| %>
+              <% index += 1 %>
+              <tr>
+                <th scope="row"><%= index %></th>
+                <td><%= cart_item.shortname %></td>
+                <td>1</td>
+                <td><%= humanized_money_with_symbol cart_item.price %> </td>
+                <td><strong><%= humanized_money_with_symbol cart_item.price %></strong></td>
+                <td>
+                  <%= link_to remove_from_cart_cart_page_path(cart_item), method: :delete do %>
+                    <i class="fa-solid fa-trash-can text-secondary"></i>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+              <tr>
+                <th scope="row"></th>
+                <td colspan="2"></td>
+                <td><strong>Total Cost of Order</strong></td>
+                <%# <td><strong><%= humanized_money_with_symbol @order.amount%></strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-lg-2"></div>
+      </div>
+      <div class="d-flex justify-content-center py-3">
+        <%= link_to "Confirm Order & Proceed to Payment",  create_shopping_cart_order_path, :class=>"btn btn-secondary text-white text-decoration-none" %>
+      </div>
 
-<%= link_to "Proceed to Payment",  create_shopping_cart_order_path, :class=>"btn btn-secondary text-white text-decoration-none" %></li>
+    </div>
+  </div>
+</div>

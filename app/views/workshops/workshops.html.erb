@@ -67,17 +67,22 @@
                 <%# <p class="card-text">This is a summary of the workshop.</p> %>
               <% end %>
               <div class="d-flex justify-content-between align-content-center" >
-                <div class="btn btn-primary"> <%= link_to "Enroll Now",  new_user_session_path, :class=>"text-white text-decoration-none" %> </div>
-                <% if @cart.include?(workshop) %>
-                  <%= button_to "Remove from cart", remove_from_cart_path(workshop), method: :delete %>
-                <% else %>
-                <div class="btn btn-secondary">
-                  <%= button_to add_to_cart_path(workshop), method: :submit do %>
-                    <i class="fa-solid fa-cart-plus text-white text-decoration-none"></i>
+                <div>
+                  <div class="btn btn-primary"> <%= link_to "Enroll Now",  new_user_session_path, :class=>"text-white text-decoration-none" %> </div>
+                  <% if @cart.include?(workshop) %>
+                    <div class="btn btn-secondary">
+                      <%= button_to remove_from_cart_path(workshop), method: :delete do %>
+                        <i class="fa-solid fa-trash-can text-white text-decoration-none"></i>
+                      <% end %>
+                    </div>
+                  <% else %>
+                  <div class="btn btn-secondary">
+                    <%= button_to add_to_cart_path(workshop), method: :submit do %>
+                      <i class="fa-solid fa-cart-plus text-white text-decoration-none"></i>
+                    <% end %>
+                  </div>
                   <% end %>
                 </div>
-                  <%= button_to "Add to cart", add_to_cart_path(workshop) %>
-                <% end %>
                 <turbo-frame id="bookmark_1" class="d-flex align-content-center" >
                   <% if !user_signed_in? %>
                     <div></div>
