@@ -16,24 +16,29 @@
         <div class="btn btn-secondary text-white rounded-circle justify-content-center align-items-center" id="navbarDropdown" data-bs-toggle="dropdown" style= "height: 2.4rem;width: 2.4rem;margin: 0;padding-left: 0px;padding-right: 0px;">
           <%=current_user.first_name[0].capitalize+current_user.last_name[0].capitalize%>
         </div>
+        <% if @cart.size >= 1  %>
+          <span class="badge badge-notify" style="font-size:10px;"><%= @cart.size %></span>
+        <% end %>
         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-          <%= link_to "My Account", "/account", class: "dropdown-item" %>
-          <%= link_to "Log out",  destroy_user_session_path, :class=>"dropdown-item", :method=>"Delete" %>
+          <%= link_to("https://learning.brightfutures.net", :class=>"dropdown-item") do %>
+            <p><i class="fa-solid fa-book-open"></i> Learning Hub</p>
+          <% end %>
+          <%= link_to(account_path, :class=>"dropdown-item") do %>
+            <p><i class="fa-regular fa-circle-user"></i> My Account</p>
+          <% end %>
+          <%= link_to(destroy_user_session_path, :class=>"dropdown-item", :method=>"Delete") do %>
+            <p><i class="fa-solid fa-right-from-bracket"></i> Log out</p>
+          <% end %>
+          <% if @cart.size >= 1  %>
+            <%= link_to(cart_path, :class=>"dropdown-item") do %>
+              <p><i class="fa-solid fa-cart-shopping"></i> My Cart</p>
+            <% end %>
+            <span class="badge badge-notify cart-badge" style="font-size:10px;"><%= @cart.size %></span>
+            </div>
+          <% end %>
         </div>
       <% else %>
         <div class="btn btn-secondary"> <%= link_to "Sign In",  new_user_session_path, :class=>"text-white text-decoration-none" %> </div>
-      <% end %>
-      <% if @cart.size >= 1  %>
-        <div class="container">
-
-
-          <div class="btn btn-secondary">
-          <%= link_to(cart_path) do %>
-            <i class="fa-solid fa-cart-shopping text-white text-decoration-none"></i>
-          <% end %>
-          </div>
-          <span class="badge badge-notify" style="font-size:10px;"><%= @cart.size %></span>
-        </div>
       <% end %>
     </div>
   </div>
@@ -45,14 +50,35 @@
     <li class="nav-item nav-link"> <%= link_to "Educators", "#{home_educators_path}#es", :class=>"small text-muted text-decoration-none" %> </li>
     <li class="nav-item nav-link border-top align-self-center"></li>
     <li class="nav-item nav-link">
-      <% if user_signed_in? %>
-        <div class="btn btn-secondary"> <%= link_to "Log Out",  destroy_user_session_path, :class=>"text-white text-decoration-none", :method=>"Delete" %> </div>
-      <% else %>
-        <div class="btn btn-secondary"> <%= link_to "Sign In",  new_user_session_path, :class=>"text-white text-decoration-none" %> </div>
-      <% end %>
-    </li>
-    <li class="nav-item nav-link">
       <a class="btn btn-primary text-white text-decoration-none" href="/workshops"> <i class="fa-solid fa-magnifying-glass"></i> Find A Workshop</a>
     </li>
+    <li class="nav-item nav-link">
+      <a class="btn btn-primary text-white text-decoration-none" href="https://learning.brightfutures.net"> <i class="fa-solid fa-book-open"></i> Learning Hub</a>
+    </li>
+    <% if user_signed_in? %>
+      <li class="nav-item nav-link border-top align-self-center"></li>
+      <li class="nav-item nav-link">
+        <%= link_to(account_path, :class=>"small text-muted text-decoration-none") do %>
+          <p><i class="fa-regular fa-circle-user"></i> My Account</p>
+        <% end %>
+      </li>
+      <li class="nav-item nav-link">
+        <%= link_to(destroy_user_session_path, :class=>"small text-muted text-decoration-none", :method=>"Delete") do %>
+          <p><i class="fa-solid fa-right-from-bracket"></i> Log out</p>
+        <% end %>
+      </li>
+      <li class="nav-item nav-link">
+        <% if @cart.size >= 1  %>
+          <%= link_to(cart_path, :class=>"small text-muted text-decoration-none") do %>
+            <p><i class="fa-solid fa-cart-shopping"></i> My Cart</p>
+          <% end %>
+          <span class="badge badge-notify cart-badge-mobile" style="font-size:10px;"><%= @cart.size %></span>
+        <% end %>
+      </li>
+    <% else %>
+      <li class="nav-item nav-link">
+        <div class="btn btn-secondary"> <%= link_to "Sign In",  new_user_session_path, :class=>"text-white text-decoration-none" %> </div>
+      </li>
+    <% end %>
   </ul>
 </div>
