@@ -2,6 +2,7 @@ class WorkshopsController < ApplicationController
   skip_before_action :authenticate_user!
 
   def workshops
+    # cart_params
     moodle = MoodleRb.new(ENV['MOODLE_WEBSERVICES_TOKEN'], ENV['MOODLE_URL'])
     moodle_workshops = moodle.courses.index
 
@@ -29,9 +30,9 @@ class WorkshopsController < ApplicationController
 
       new_workshop.save
     end
-    @q = Workshop.ransack(params[:q])
+    @q = Workshop.ransack(cart_params[:q])
     @workshops = @q.result(distinct: true)
-    if params[:fav] == '1'
+    if cart_params[:fav] == '1'
       @workshops = @workshops.joins(:bookmarks).where("user_id = #{current_user.id}")
     end
   end
@@ -41,15 +42,15 @@ class WorkshopsController < ApplicationController
   end
 
   def add_to_cart
-    id = params[:id].to_i
+    id = cart_params[:id].to_i
     session[:ws_cart] << id unless session[:ws_cart].include?(id)
-    redirect_to workshops_path
+    redirect_to workshops_path(params: cart_params)
   end
 
   def remove_from_cart
-    id = params[:id].to_i
+    id = cart_params[:id].to_i
     session[:ws_cart].delete(id)
-    redirect_to workshops_path
+    redirect_to workshops_path(params: cart_params)
   end
 
   def add_to_cart_ws_page
@@ -65,4 +66,9 @@ class WorkshopsController < ApplicationController
     redirect_to cart_path
   end
 
+  private
+
+  def cart_params
+    params.permit(:id, :fav, q: {})
+  end
 end

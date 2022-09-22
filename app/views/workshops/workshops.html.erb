@@ -48,6 +48,10 @@
   </div>
   </div>
   <div class="row">
+    <%# Used to carry params over when adding to cart %>
+    <% if !params[:q].nil?
+        params[:q].permit!
+      end  %>
     <% @workshops.each do |workshop| %>
     <%# <% 8.times do %>
       <div class="col-xs-12 col-sm-6 col-md-4">
@@ -62,7 +66,6 @@
                 <h5 class="card-title"><%= workshop.shortname %></h5>
                 <p class="card-text">
                   <%= workshop.summary %>
-
                 </p>
                 <%# <p class="card-text">This is a summary of the workshop.</p> %>
               <% end %>
@@ -71,13 +74,13 @@
                   <div class="btn btn-primary"> <%= link_to "Enroll Now",  new_user_session_path, :class=>"text-white text-decoration-none" %> </div>
                   <% if @cart.include?(workshop) %>
                     <div class="btn btn-secondary">
-                      <%= button_to remove_from_cart_path(workshop), method: :delete do %>
+                      <%= button_to remove_from_cart_path(workshop), method: :delete, params: {:q=> params[:q], :fav=> params[:fav]} do %>
                         <i class="fa-solid fa-trash-can text-white text-decoration-none"></i>
                       <% end %>
                     </div>
                   <% else %>
                   <div class="btn btn-secondary">
-                    <%= button_to add_to_cart_path(workshop), method: :submit do %>
+                    <%= button_to add_to_cart_path(workshop), method: :submit, params: {:q=> params[:q], :fav=> params[:fav]}  do %>
                       <i class="fa-solid fa-cart-plus text-white text-decoration-none"></i>
                     <% end %>
                   </div>
