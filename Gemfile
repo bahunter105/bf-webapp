@@ -70,3 +70,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 group :development do
   gem 'puma-ngrok-tunnel'
 end
+
+gem "sendgrid_ruby", "~> 0.0.6"
