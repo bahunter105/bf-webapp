@@ -17,7 +17,7 @@
           <%=current_user.first_name[0].capitalize+current_user.last_name[0].capitalize%>
         </div>
         <% if @cart.size >= 1  %>
-          <span class="badge badge-notify" style="font-size:10px;"><%= @cart.size %></span>
+          <span class="badge badge-notify" style="font-size:10px;margin-right: -22px;"><%= @cart.size %></span>
         <% end %>
         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
           <%= link_to("https://learning.brightfutures.net", :class=>"dropdown-item") do %>
