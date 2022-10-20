@@ -7,7 +7,6 @@ class UserMailer < ApplicationMailer
   #
   def welcome
     @user = params[:user] # Instance variable => available in view
-    @user = User.first
     mail(to: @user.email, subject: 'Welcome to Bright Futures')
     # This will render a view in `app/views/user_mailer`!
   end
