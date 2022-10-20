@@ -34,6 +34,8 @@ gem 'turbo-rails'
 gem 'money-rails'
 gem 'stripe'
 gem 'stripe_event'
+gem 'caffeinate'
+
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

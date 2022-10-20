@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount ::Caffeinate::Engine => '/caffeinate'
 
   get 'cookies/index'
   devise_for :users
