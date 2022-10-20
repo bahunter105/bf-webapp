@@ -68,9 +68,7 @@ class WorkshopsController < ApplicationController
 
   def preview
     @workshop = Workshop.find(params[:id])
-    @user = current_user
-    ws_user = [current_user, @workshop]
-    PreviewDripper.subscribe(ws_user)
+    PreviewDripper.subscribe(current_user)
     PreviewDripper.perform!
   end
 
