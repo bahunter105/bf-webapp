@@ -22,13 +22,20 @@ Rails.application.routes.draw do
   resources :bookmarks, only: [:index, :show, :destroy]
   post 'bookmarks', to: 'bookmarks#create'
 
-  resources :workshops, only: [:show]
+  resources :workshops, only: [:show] do
+    member do
+      get :preview
+    end
+  end
+
   get 'workshops', to: 'workshops#workshops'
   post "workshops/add_to_cart/:id", to: "workshops#add_to_cart", as: "add_to_cart"
   post "workshops/add_to_cart_ws_page/:id", to: "workshops#add_to_cart_ws_page", as: "add_to_cart_ws_page"
   delete "workshops/remove_from_cart/:id", to: "workshops#remove_from_cart", as: "remove_from_cart"
   delete 'workshops/remove_from_cart_cart_page/:id', to:'workshops#remove_from_cart_cart_page', as: "remove_from_cart_cart_page"
+
   get 'create_shopping_cart_order', to: 'orders#create_shopping_cart_order'
+
   resources :orders, only: [:show, :create] do
       resources :payments, only: :new
   end
