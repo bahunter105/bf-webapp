@@ -99,6 +99,7 @@ GEM
       xpath (~> 3.2)
     childprocess (4.1.0)
     concurrent-ruby (1.1.10)
+    connection_pool (2.3.0)
     crass (1.0.6)
     devise (4.8.1)
       bcrypt (~> 3.0)
@@ -247,6 +248,12 @@ GEM
     sendgrid_ruby (0.0.6)
       rest-client
       smtpapi
+    sidekiq (6.5.7)
+      connection_pool (>= 2.2.5)
+      rack (~> 2.0)
+      redis (>= 4.5.0, < 5)
+    sidekiq-failures (1.0.4)
+      sidekiq (>= 4.0.0)
     smtpapi (0.1.12)
     spring (4.0.0)
     sprockets (4.1.1)
@@ -325,6 +332,8 @@ DEPENDENCIES
   sass-rails (>= 6)
   selenium-webdriver (>= 4.0.0.rc1)
   sendgrid_ruby (~> 0.0.6)
+  sidekiq
+  sidekiq-failures (~> 1.0)
   simple_form!
   spring
   stripe

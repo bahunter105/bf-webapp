@@ -1,5 +1,5 @@
 class WorkshopsController < ApplicationController
-  skip_before_action :authenticate_user!
+  skip_before_action :authenticate_user!, except: :preview
 
   def workshops
     # cart_params
@@ -64,6 +64,10 @@ class WorkshopsController < ApplicationController
     id = params[:id].to_i
     session[:ws_cart].delete(id)
     redirect_to cart_path
+  end
+
+  def preview
+    @workshop = Workshop.find(params[:id])
   end
 
   private
