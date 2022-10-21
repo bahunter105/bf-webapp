@@ -68,8 +68,12 @@ class WorkshopsController < ApplicationController
 
   def preview
     @workshop = Workshop.find(params[:id])
-    PreviewDripper.subscribe(current_user)
-    PreviewDripper.perform!
+    if !PreviewDripper.subscriptions.find_by(user_id: current_user.id).nil?
+      PreviewDripper.subscribe(@workshop, user: current_user)
+      PreviewDripper.perform!
+    end
+    flash.now[:notice] = "You are subscribed and have access to this preview."
+
   end
 
   private
