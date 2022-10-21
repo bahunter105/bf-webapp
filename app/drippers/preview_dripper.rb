@@ -12,6 +12,6 @@ class PreviewDripper < ApplicationDripper
 
   # map drips to the mailer
   drip :welcome, mailer: 'PreviewMailer', delay: 0.hours
-  drip :first_followup, mailer: 'PreviewMailer', delay: 1.hours
-  drip :second_followup, mailer: 'PreviewMailer', delay: 2.hours
+  drip :first_followup, mailer: 'PreviewMailer', delay: 1.minutes
+  drip :second_followup, mailer: 'PreviewMailer', delay: 2.minutes
 end
