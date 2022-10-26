@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  consult_category: MyString
+  date_time: 2022-10-26 12:35:52
+  completed: false
+  order: one
+
+two:
+  consult_category: MyString
+  date_time: 2022-10-26 12:35:52
+  completed: false
+  order: two

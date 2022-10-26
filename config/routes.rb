@@ -36,6 +36,7 @@ Rails.application.routes.draw do
   delete 'workshops/remove_from_cart_cart_page/:id', to:'workshops#remove_from_cart_cart_page', as: "remove_from_cart_cart_page"
 
   get 'create_shopping_cart_order', to: 'orders#create_shopping_cart_order'
+  get 'create_consult_order', to: 'orders#create_consult_order'
 
   resources :orders, only: [:show, :create] do
       resources :payments, only: :new

@@ -11,8 +11,9 @@ User.destroy_all
 Workshop.destroy_all
 
 puts "Creating users..."
-user1 = {email: "bob@gmail.cs", password: '123456'}
-user2 = {email: "jim@gmail.cs", password: '123456'}
+user1 = {email: "bob@gmail.cs", first_name: 'Bob', last_name: 'Billy', password: '123456'}
+user2 = {email: "jim@gmail.cs", first_name: 'Jim', last_name: 'Jilly', password: '123456'}
+
 
 [user1, user2].each do |attributes|
   user = User.create!(attributes)
@@ -31,4 +32,6 @@ ws4 = {fullname: 'DB Seed WS -2', shortname: 'DB Seeding -2', summary: 'DB Secon
   ws = Workshop.create!(attributes)
   puts "Created #{ws.shortname}"
 end
+
+
 puts "Finished!"
