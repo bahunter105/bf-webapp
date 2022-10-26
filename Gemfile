@@ -36,6 +36,8 @@ gem 'stripe'
 gem 'stripe_event'
 gem 'caffeinate'
 
+gem 'google-apis-calendar_v3', '~> 0.1'
+
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
