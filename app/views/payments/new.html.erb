@@ -30,7 +30,7 @@
                 <td><strong><%= humanized_money_with_symbol product.price %></strong></td>
               </tr>
             <% end %>
-            <% if !@order.consult_products.nil?%>
+            <% if !@order.consult_products.empty?%>
               <% index += 1 %>
               <tr>
                 <th scope="row"><%= index %></th>

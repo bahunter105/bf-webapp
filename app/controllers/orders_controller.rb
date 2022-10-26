@@ -56,7 +56,7 @@ class OrdersController < ApplicationController
           product_data: {
             name: 'Consultations',
           },
-          unit_amount: consult_product.price_cents,
+          unit_amount: consult_product.price_cents/consult_product.quantity,
         },
         quantity: consult_product.quantity,
       }
@@ -141,6 +141,9 @@ class OrdersController < ApplicationController
 
   def show
     @order = current_user.orders.find(params[:id])
+
+    return nil if @order.recognized?
+
     user = current_user
     if @order.state == 'paid' && @order.workshops.any?
       moodle = MoodleRb.new(ENV['MOODLE_WEBSERVICES_TOKEN'], ENV['MOODLE_URL'])
@@ -170,6 +173,18 @@ class OrdersController < ApplicationController
         )
       end
     end
+
+    if !@order.consult_products.empty? && @order.state == 'paid'
+      user = @order.user
+      @order.consult_products.each do |product|
+        user.remaining_consultations += product.quantity
+        user.save
+      end
+    end
+
+    @order.recognized = true
+    @order.save
+
   end
 
   def to_builder
