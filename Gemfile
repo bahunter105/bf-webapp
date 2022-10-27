@@ -35,7 +35,7 @@ gem 'money-rails'
 gem 'stripe'
 gem 'stripe_event'
 gem 'caffeinate'
-
+gem 'gon'
 gem 'google-apis-calendar_v3', '~> 0.1'
 
 

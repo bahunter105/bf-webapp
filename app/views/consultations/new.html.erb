@@ -1,4 +1,8 @@
 <div class="container">
+  <%# <div data-controller="hello">
+    <input type="text">
+    <button data-action="click->hello#greet">Greet</button>
+</div> %>
   <div class="row py-4">
     <div class="col">
       <div class="row text-center">
@@ -6,7 +10,7 @@
       </div>
       <div class="row py-5">
         <div class="col-lg-2"></div>
-        <div class="col-lg-9">
+        <div class="col-lg-9" data-controller="hello">
           <%= form_with model: Consultation.new, authenticity_token: true do |f| %>
             <%= f.text_field :date_time,
               data: {
@@ -14,14 +18,31 @@
               } %>
           <% end %>
         </div>
-        <div class="col-lg-2"></div>
+        <div class="col-lg-2">
+          <p><%=@events[0].start.date_time%></p>
+          <p><%=@events[0].end.date_time%></p>
+        </div>
       </div>
-      <div class="d-flex justify-content-center py-3">
-        <button class="btn btn-primary" style="width:20%">Button</button>
-      </div>
+      <% btn_time = Time.parse("11:00 PM") - 1.day%>
+      <% 24.times do %>
+        <% btn_time += 3600%>
+        <div class="d-flex justify-content-center py-3">
+          <button class="btn btn-primary consultbtn" data-time=<%=btn_time.strftime("%I:%M %p")%> style="width:20%">Book <%=btn_time.strftime("%I:%M %p") %></button>
+        </div>
+      <% end %>
 
     </div>
   </div>
 </div>
 <%# @force_refresh = true to refresh page for stripe payment. Workaround for turbolinks reload %>
 <% @force_refresh = true %>
+<%# <script>
+  document.querySelector("#consultation_date_time").addEventListener('change', function(e) {
+      console.log(document.querySelector("#consultation_date_time").value)
+  });
+</script> %>
+<%# <script>
+  window.addEventListener('load', (event) => {
+    console.log('page is fully loaded');
+  });
+</script> %>

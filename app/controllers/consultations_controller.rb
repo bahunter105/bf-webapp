@@ -7,13 +7,13 @@ class ConsultationsController < ApplicationController
     authorizer = Google::Auth::ServiceAccountCredentials.from_env(scope: scope)
     calendar.authorization = authorizer
     calendar_id = 'hunter@brightfutures.net'
-    @result = calendar.list_events(calendar_id,
-                                    max_results: 10,
+    result = calendar.list_events(calendar_id,
+                                    max_results: 100,
                                     single_events: true,
                                     order_by: 'startTime',
                                     time_min: Time.now.iso8601)
-
-
+    @events = result.items
+    gon.result = @events
   end
 
   def create
