@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row py-4">
+    <div class="col">
+      <div class="row text-center">
+        <h1>Schedule A Consultation</h1>
+      </div>
+      <div class="row py-5">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-9">
+          <%= form_with model: Consultation.new, authenticity_token: true do |f| %>
+            <%= f.text_field :date_time,
+              data: {
+                behavior: "flatpickr",
+              } %>
+          <% end %>
+        </div>
+        <div class="col-lg-2"></div>
+      </div>
+      <div class="d-flex justify-content-center py-3">
+        <button class="btn btn-primary" style="width:20%">Button</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<%# @force_refresh = true to refresh page for stripe payment. Workaround for turbolinks reload %>
+<% @force_refresh = true %>
