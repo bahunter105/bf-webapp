@@ -12,15 +12,24 @@ export default class extends Controller {
       let day = date_string.slice(8,10)
       let today = new Date(yr, mo, day)
 
-      // Show & enable all buttons.
+      // Show & enable all buttons. Update hidden form fields
       let consultbtns = document.querySelectorAll(".consultbtn")
       consultbtns.forEach((btn) => {
         btn.style.display = "";
         btn.disabled = false
+        let hidden_input = btn.parentElement.querySelectorAll('input')[1]
+        let st = hidden_input.getAttribute('id')
+        st = `datatime_${yr}-${mo+1}-${day}`+ st.slice(19)
+        hidden_input.setAttribute('id', st)
+        st = `datatime[`+ st.slice(9)+']'
+        hidden_input.setAttribute('name', st)
       })
 
       new Date(document.querySelector("#consultation_date_time").value).toDateString() ==
       new Date(gon.result[0].start.date_time).toDateString()
+
+
+      if (gon.result.length == 0) return null
 
       // translate all date-times to current.
       // Select all js items with the same date.
@@ -50,10 +59,15 @@ export default class extends Controller {
         let cons_start_date = new Date(consultation.start.date_time)
         let cons_end_date = new Date(consultation.end.date_time)
         consultbtns.forEach((btn) => {
-          let btn_start_date = new Date(btn.getAttribute('data-time'))
-          btn_start_date.setFullYear(yr);
-          btn_start_date.setMonth(mo);
-          btn_start_date.setDate(day);
+          let hidden_input = btn.parentElement.querySelectorAll('input')[1]
+          let date_st = hidden_input.getAttribute('id').slice(9)
+          let btn_start_date = new Date(date_st)
+          console.log(date_st)
+          console.log(btn_start_date)
+          // btn_start_date.setFullYear(yr);
+          // btn_start_date.setMonth(mo);
+          // console.log(mo)
+          // btn_start_date.setDate(day);
           let btn_end_date = new Date(btn_start_date)
           btn_end_date.setHours(btn_end_date.getHours() + 1);
           if (cons_start_date >= btn_start_date && cons_start_date < btn_end_date) {

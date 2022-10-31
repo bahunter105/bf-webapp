@@ -1,5 +1,8 @@
 class ConsultationsController < ApplicationController
 
+  def show
+    @consultation = Consultation.find(params[:id])
+  end
   def new
     @consultation = Consultation.new # Needed to instantiate the form_with
     calendar = Google::Apis::CalendarV3::CalendarService.new
@@ -26,6 +29,6 @@ class ConsultationsController < ApplicationController
   private
 
   def consultation_params
-    params.require(:consultation).permit(:name, :address, :rating)
+    params.require(:consultation).permit(:consult_category, :date_time)
   end
 end
