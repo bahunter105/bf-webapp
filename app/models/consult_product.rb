@@ -1,5 +1,4 @@
 class ConsultProduct < ApplicationRecord
-  belongs_to :order
-  has_one :user, through: :orders
+  belongs_to :user
   monetize :price_cents
 end

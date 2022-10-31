@@ -4,7 +4,7 @@ class CreateConsultations < ActiveRecord::Migration[6.1]
       t.string :consult_category
       t.datetime :date_time
       t.boolean :completed
-      t.references :order, null: false, foreign_key: true
+      t.references :user, null: false, foreign_key: true
 
       t.timestamps
     end

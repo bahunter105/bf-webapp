@@ -78,10 +78,10 @@ ActiveRecord::Schema.define(version: 2022_10_26_224626) do
     t.string "consult_category"
     t.datetime "date_time"
     t.boolean "completed"
-    t.bigint "order_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["order_id"], name: "index_consultations_on_order_id"
+    t.index ["user_id"], name: "index_consultations_on_user_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -141,7 +141,7 @@ ActiveRecord::Schema.define(version: 2022_10_26_224626) do
   add_foreign_key "caffeinate_campaign_subscriptions", "caffeinate_campaigns"
   add_foreign_key "caffeinate_mailings", "caffeinate_campaign_subscriptions"
   add_foreign_key "consult_products", "orders"
-  add_foreign_key "consultations", "orders"
+  add_foreign_key "consultations", "users"
   add_foreign_key "orders", "users"
   add_foreign_key "products", "orders"
   add_foreign_key "products", "workshops"

@@ -3,6 +3,10 @@ Rails.application.routes.draw do
 
   get 'cookies/index'
   devise_for :users
+
+  resources :users do
+    resources :consultations
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: 'pages#coming_soon'
   get 'home', to: 'pages#home'
@@ -41,8 +45,6 @@ Rails.application.routes.draw do
   resources :orders, only: [:show, :create] do
       resources :payments, only: :new
   end
-
-  resources :consultations
 
   get 'cart', to: 'cart#cart'
 

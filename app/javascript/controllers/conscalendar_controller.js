@@ -19,10 +19,15 @@ export default class extends Controller {
         btn.disabled = false
         let hidden_input = btn.parentElement.querySelectorAll('input')[1]
         let st = hidden_input.getAttribute('id')
-        st = `datatime_${yr}-${mo+1}-${day}`+ st.slice(19)
-        hidden_input.setAttribute('id', st)
-        st = `datatime[`+ st.slice(9)+']'
-        hidden_input.setAttribute('name', st)
+        // console.log(st)
+        // st = `datatime_${yr}-${mo+1}-${day}`+ st.slice(27)
+        // st = `datatime[{:date_time=>"${yr}-${mo+1}-${day}`+ st.slice(29,38)+'"}]'
+        // hidden_input.setAttribute('id', st)
+        // // st = `da tatime[datatime]`+ st.slice(9,38)
+        // console.log(st)
+        hidden_input.setAttribute('name', 'date_time')
+        hidden_input.setAttribute('value', `${yr}-${mo+1}-${day}${st.slice(29,38)}`)
+        // name='datatime[{:value=>"2022-10-31 00:00:00"}]'
       })
 
       new Date(document.querySelector("#consultation_date_time").value).toDateString() ==
@@ -62,8 +67,8 @@ export default class extends Controller {
           let hidden_input = btn.parentElement.querySelectorAll('input')[1]
           let date_st = hidden_input.getAttribute('id').slice(9)
           let btn_start_date = new Date(date_st)
-          console.log(date_st)
-          console.log(btn_start_date)
+          // console.log(date_st)
+          // console.log(btn_start_date)
           // btn_start_date.setFullYear(yr);
           // btn_start_date.setMonth(mo);
           // console.log(mo)

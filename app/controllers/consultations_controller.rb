@@ -1,8 +1,10 @@
 class ConsultationsController < ApplicationController
+  before_action :set_user, only: %i[new create]
 
   def show
     @consultation = Consultation.find(params[:id])
   end
+
   def new
     @consultation = Consultation.new # Needed to instantiate the form_with
     calendar = Google::Apis::CalendarV3::CalendarService.new
@@ -20,15 +22,20 @@ class ConsultationsController < ApplicationController
   end
 
   def create
-    @consultation = Consultation.new(consultation_params)
+    @consultation = Consultation.new
+    @consultation.user = @user
+    @consultation.date_time = params[:date_time]
     @consultation.save
-    # No need for app/views/consultations/create.html.erb
-    redirect_to consultation_path(@consultation)
+    redirect_to account_path
   end
 
   private
+  def set_user
+    @user = User.find(params[:user_id])
+  end
 
   def consultation_params
-    params.require(:consultation).permit(:consult_category, :date_time)
+    # params.require(:consultation)
+    params.require(:date_time)
   end
 end
