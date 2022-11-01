@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:coming_soon, :home, :family_home, :educator_home, :webinar, :courses, :about, :contact_us]
+  skip_before_action :authenticate_user!, only: [:coming_soon, :home, :family_home, :educator_home, :webinar, :courses, :consultations, :about, :contact_us]
 
   def coming_soon
     render layout: "simple"
@@ -24,6 +24,9 @@ class PagesController < ApplicationController
   end
 
   def ambassador_educator
+  end
+
+  def consultations
   end
 
   def about

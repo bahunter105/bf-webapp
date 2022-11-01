@@ -35,6 +35,41 @@ class OrdersController < ApplicationController
     redirect_to new_order_payment_path(order)
   end
 
+  def create_consult_order
+    order = Order.new
+    order.user = current_user
+    order.state = 'pending'
+    order.save
+    consult_product = ConsultProduct.new
+    consult_product.order = order
+    quantity = params[:quantity].to_i
+    consult_product.quantity = quantity
+    consult_product.price_cents = consult_price(quantity)
+    consult_product.save
+    order.amount_cents = consult_product.price_cents
+    order.save
+
+    session = Stripe::Checkout::Session.create({
+      line_items: [{
+        price_data: {
+          currency: 'usd',
+          product_data: {
+            name: 'Consultations',
+          },
+          unit_amount: consult_product.price_cents/consult_product.quantity,
+        },
+        quantity: consult_product.quantity,
+      }
+    ],
+      mode: 'payment',
+      success_url: order_url(order),
+      cancel_url: order_url(order),
+    })
+
+    order.update(checkout_session_id: session.id)
+    redirect_to new_order_payment_path(order)
+  end
+
   def create_shopping_cart_order
     stripe_json = []
     order = Order.new
@@ -106,6 +141,9 @@ class OrdersController < ApplicationController
 
   def show
     @order = current_user.orders.find(params[:id])
+
+    return nil if @order.recognized?
+
     user = current_user
     if @order.state == 'paid' && @order.workshops.any?
       moodle = MoodleRb.new(ENV['MOODLE_WEBSERVICES_TOKEN'], ENV['MOODLE_URL'])
@@ -135,12 +173,32 @@ class OrdersController < ApplicationController
         )
       end
     end
+
+    if !@order.consult_products.empty? && @order.state == 'paid'
+      user = @order.user
+      @order.consult_products.each do |product|
+        user.remaining_consultations += product.quantity
+        user.save
+      end
+    end
+
+    @order.recognized = true
+    @order.save
+
   end
 
   def to_builder
     Jbuilder.new do |product|
       product.price stripe_price_id
       product.quantity 1
+    end
+  end
+
+  def consult_price(quantity)
+    if quantity >= 5
+      return quantity*3999
+    elsif quantity > 0
+      return quantity*4999
     end
   end
 end

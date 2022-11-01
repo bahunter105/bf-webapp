@@ -3,6 +3,10 @@ Rails.application.routes.draw do
 
   get 'cookies/index'
   devise_for :users
+
+  resources :users do
+    resources :consultations
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: 'pages#coming_soon'
   get 'home', to: 'pages#home'
@@ -36,6 +40,7 @@ Rails.application.routes.draw do
   delete 'workshops/remove_from_cart_cart_page/:id', to:'workshops#remove_from_cart_cart_page', as: "remove_from_cart_cart_page"
 
   get 'create_shopping_cart_order', to: 'orders#create_shopping_cart_order'
+  get 'create_consult_order', to: 'orders#create_consult_order'
 
   resources :orders, only: [:show, :create] do
       resources :payments, only: :new

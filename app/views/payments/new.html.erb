@@ -30,6 +30,21 @@
                 <td><strong><%= humanized_money_with_symbol product.price %></strong></td>
               </tr>
             <% end %>
+            <% if !@order.consult_products.empty?%>
+              <% index += 1 %>
+              <tr>
+                <th scope="row"><%= index %></th>
+                <td>Consulting Session</td>
+                <td><%= @order.consult_products.first.quantity%></td>
+                <% if @order.consult_products.first.quantity >= 5 %>
+                  <td><%= humanized_money_with_symbol 39.99 %> </td>
+                  <td><strong><%= humanized_money_with_symbol @order.consult_products.first.quantity*39.99 %></strong></td>
+                <%elsif @order.consult_products.first.quantity > 0 %>
+                  <td><%= humanized_money_with_symbol 49.99 %> </td>
+                  <td><strong><%= humanized_money_with_symbol @order.consult_products.first.quantity*49.99 %></strong></td>
+                <% end %>
+              </tr>
+            <% end %>
               <tr>
                 <th scope="row"></th>
                 <td colspan="2"></td>

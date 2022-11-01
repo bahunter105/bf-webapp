@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :workshops, through: :bookmarks
   has_many :orders
   has_many :products, through: :orders
+  has_many :consultations
+  has_many :consult_products, through: :orders
   validates :first_name, :last_name, presence: true
 
   after_create :send_welcome_email
