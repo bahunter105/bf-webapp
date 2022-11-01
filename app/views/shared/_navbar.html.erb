@@ -20,6 +20,9 @@
           <span class="badge badge-notify" style="font-size:10px;margin-right: -22px;"><%= @cart.size %></span>
         <% end %>
         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+          <%= link_to(new_user_consultation_path(current_user), :class=>"dropdown-item") do %>
+            <p><i class="fa-regular fa-calendar-plus"></i> Book Consultation</p>
+          <% end %>
           <%= link_to("https://learning.brightfutures.net", :class=>"dropdown-item") do %>
             <p><i class="fa-solid fa-book-open"></i> Learning Hub</p>
           <% end %>
@@ -52,10 +55,14 @@
     <li class="nav-item nav-link">
       <a class="btn btn-primary text-white text-decoration-none" href="/workshops"> <i class="fa-solid fa-magnifying-glass"></i> Find A Workshop</a>
     </li>
-    <li class="nav-item nav-link">
-      <a class="btn btn-primary text-white text-decoration-none" href="https://learning.brightfutures.net"> <i class="fa-solid fa-book-open"></i> Learning Hub</a>
-    </li>
     <% if user_signed_in? %>
+      <li class="nav-item nav-link">
+          <%= link_to(new_user_consultation_path(current_user), :class=>"btn btn-primary text-white text-decoration-none") do %>
+            <p style="margin-bottom: 0px;"><i class="fa-regular fa-calendar-plus"></i> Book Consultation</p>
+          <% end %>
+      <li class="nav-item nav-link">
+        <a class="btn btn-primary text-white text-decoration-none" href="https://learning.brightfutures.net"> <i class="fa-solid fa-book-open"></i> Learning Hub</a>
+      </li>
       <li class="nav-item nav-link border-top align-self-center"></li>
       <li class="nav-item nav-link">
         <%= link_to(account_path, :class=>"small text-muted text-decoration-none") do %>
