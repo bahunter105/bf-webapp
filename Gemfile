@@ -35,7 +35,8 @@ gem 'money-rails'
 gem 'stripe'
 gem 'stripe_event'
 gem 'caffeinate'
-
+gem 'gon'
+gem 'google-apis-calendar_v3', '~> 0.1'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -58,6 +59,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'letter_opener', group: :development
+  gem 'pry-byebug'
 end
 
 group :test do

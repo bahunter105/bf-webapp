@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row py-4">
+    <div class="col">
+      <div class="row text-center">
+        <h1>Schedule A Consultation</h1>
+      </div>
+      <div class="row py-5">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-9" data-controller="conscalendar">
+          <%= form_with model: Consultation.new, authenticity_token: true do |f| %>
+            <%= f.label :date_time, "Select a date:" %>
+            <%= f.text_field :date_time,
+              data: {
+                behavior: "flatpickr",
+              } %>
+          <% end %>
+        </div>
+        <div class="col-lg-2"></div>
+      </div>
+      <% btn_time = Time.parse("11:00 PM") - 1.day%>
+      <% 24.times do %>
+        <% btn_time += 3600%>
+        <div class="d-flex justify-content-center py-3">
+          <%= form_with model: [:user, @consultation], authenticity_token: true do |f| %>
+              <%= hidden_field :datatime, value: "#{btn_time.to_s[0...-6]}" %>
+              <%= f.submit "Book #{btn_time.strftime('%I:%M %p')}", class: "btn btn-primary consultbtn", style: "display:none" %>
+          <% end %>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>
+<%# @force_refresh = true to refresh page for stripe payment. Workaround for turbolinks reload %>
+<%# <% @force_refresh = true %>
+<%# <script>
+  document.querySelector("#consultation_date_time").addEventListener('change', function(e) {
+      console.log(document.querySelector("#consultation_date_time").value)
+  });
+</script> %>
+<%# <script>
+  window.addEventListener('load', (event) => {
+    console.log('page is fully loaded');
+  });
+</script> %>

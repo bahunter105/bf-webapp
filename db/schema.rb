@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_20_201404) do
+ActiveRecord::Schema.define(version: 2022_10_26_224626) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,25 @@ ActiveRecord::Schema.define(version: 2022_10_20_201404) do
     t.index ["caffeinate_campaign_subscription_id"], name: "index_caffeinate_mailings_on_campaign_subscription"
   end
 
+  create_table "consult_products", force: :cascade do |t|
+    t.bigint "order_id", null: false
+    t.integer "quantity"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "price_cents", default: 0, null: false
+    t.index ["order_id"], name: "index_consult_products_on_order_id"
+  end
+
+  create_table "consultations", force: :cascade do |t|
+    t.string "consult_category"
+    t.datetime "date_time"
+    t.boolean "completed"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_consultations_on_user_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.string "state"
     t.integer "amount_cents", default: 0, null: false
@@ -73,6 +92,7 @@ ActiveRecord::Schema.define(version: 2022_10_20_201404) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "recognized", default: false
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -99,6 +119,7 @@ ActiveRecord::Schema.define(version: 2022_10_20_201404) do
     t.string "username"
     t.integer "moodle_id"
     t.string "moodle_password"
+    t.integer "remaining_consultations", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -119,6 +140,8 @@ ActiveRecord::Schema.define(version: 2022_10_20_201404) do
   add_foreign_key "bookmarks", "workshops"
   add_foreign_key "caffeinate_campaign_subscriptions", "caffeinate_campaigns"
   add_foreign_key "caffeinate_mailings", "caffeinate_campaign_subscriptions"
+  add_foreign_key "consult_products", "orders"
+  add_foreign_key "consultations", "users"
   add_foreign_key "orders", "users"
   add_foreign_key "products", "orders"
   add_foreign_key "products", "workshops"

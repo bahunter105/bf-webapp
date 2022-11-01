@@ -20,7 +20,9 @@
         <h2 class="text-primary">$49.99</h2>
         <p class="mb-0 text-muted">per session</p>
       </div>
-      <div class="col-12 col-lg-2 mb-4"><a class="btn btn-primary w-100" href="#">Book now</a></div>
+      <div class="col-12 col-lg-2 mb-4">
+        <%= link_to "Book now", create_consult_order_path(quantity: 1), class: "btn btn-primary w-100" %>
+      </div>
     </div>
     <div class="row align-items-center p-5 p-lg-12 mb-5 bg-primary">
       <div class="col-12 col-lg-5 mb-4">
@@ -32,7 +34,9 @@
         <h2 class="text-white">$39.99</h2>
         <p class="mb-0 text-white">per session</p>
       </div>
-      <div class="col-12 col-lg-2 mb-4"><a class="btn btn-secondary w-100" href="#">Book now</a></div>
+      <div class="col-12 col-lg-2 mb-4">
+        <%= link_to "Book now", create_consult_order_path(quantity: 5), class: "btn btn-secondary w-100" %>
+      </div>
     </div>
   </div>
 </section>
