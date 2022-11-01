@@ -14,20 +14,27 @@ export default class extends Controller {
 
       // Show & enable all buttons. Update hidden form fields
       let consultbtns = document.querySelectorAll(".consultbtn")
+      const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      let tznumber = today.getTimezoneOffset()/60 * -1
+      let tz_string
+      if (tznumber >= 0 && tznumber < 10) {
+        tz_string = ` GMT+0${tznumber}00`
+      } else if (tznumber > 10){
+        tz_string = ` GMT+${tznumber}00`
+      } else if (tznumber <= -10) {
+        tz_string = ` GMT${tznumber}00`
+      } else {
+        tz_string = ` GMT-0${-1*tznumber}00`
+      }
+
+
       consultbtns.forEach((btn) => {
         btn.style.display = "";
         btn.disabled = false
         let hidden_input = btn.parentElement.querySelectorAll('input')[1]
         let st = hidden_input.getAttribute('id')
-        // console.log(st)
-        // st = `datatime_${yr}-${mo+1}-${day}`+ st.slice(27)
-        // st = `datatime[{:date_time=>"${yr}-${mo+1}-${day}`+ st.slice(29,38)+'"}]'
-        // hidden_input.setAttribute('id', st)
-        // // st = `da tatime[datatime]`+ st.slice(9,38)
-        // console.log(st)
         hidden_input.setAttribute('name', 'date_time')
-        hidden_input.setAttribute('value', `${yr}-${mo+1}-${day}${st.slice(29,38)}`)
-        // name='datatime[{:value=>"2022-10-31 00:00:00"}]'
+        hidden_input.setAttribute('value', `${yr}-${mo+1}-${day}${st.slice(29,38)}${tz_string}`)
       })
 
       new Date(document.querySelector("#consultation_date_time").value).toDateString() ==
@@ -65,14 +72,10 @@ export default class extends Controller {
         let cons_end_date = new Date(consultation.end.date_time)
         consultbtns.forEach((btn) => {
           let hidden_input = btn.parentElement.querySelectorAll('input')[1]
-          let date_st = hidden_input.getAttribute('id').slice(9)
+          let date_st = hidden_input.getAttribute('value').slice(0,19)
           let btn_start_date = new Date(date_st)
-          // console.log(date_st)
-          // console.log(btn_start_date)
-          // btn_start_date.setFullYear(yr);
-          // btn_start_date.setMonth(mo);
-          // console.log(mo)
-          // btn_start_date.setDate(day);
+          console.log(date_st)
+          console.log(btn_start_date)
           let btn_end_date = new Date(btn_start_date)
           btn_end_date.setHours(btn_end_date.getHours() + 1);
           if (cons_start_date >= btn_start_date && cons_start_date < btn_end_date) {

@@ -8,6 +8,7 @@
         <div class="col-lg-2"></div>
         <div class="col-lg-9" data-controller="conscalendar">
           <%= form_with model: Consultation.new, authenticity_token: true do |f| %>
+            <%= f.label :date_time, "Select a date:" %>
             <%= f.text_field :date_time,
               data: {
                 behavior: "flatpickr",
