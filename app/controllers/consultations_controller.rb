@@ -83,12 +83,31 @@ class ConsultationsController < ApplicationController
     )
 
     result = calendar.insert_event(calendar_id, event)
-    # puts "Event created: #{result.html_link}"
+    puts "Event created: #{result.id}"
+    @consultation.gcal_event_id = result.id
+    @consultation.save
 
     @user.remaining_consultations -= 1
     @user.save
 
-    redirect_to account_path, notice: "You have successfully booked a consultation"
+    redirect_to account_path, notice: "You have successfully changed your consultation"
+  end
+
+  def destroy
+    @consultation = Consultation.find(params[:id])
+
+    calendar = Google::Apis::CalendarV3::CalendarService.new
+    scope = 'https://www.googleapis.com/auth/calendar'
+    authorizer = Google::Auth::ServiceAccountCredentials.from_env(scope: scope)
+    calendar.authorization = authorizer
+    calendar_id = 'hunter@brightfutures.net'
+    event = @consultation.gcal_event_id
+    calendar.delete_event(calendar_id, event)
+
+    @consultation.destroy
+    current_user.remaining_consultations += 1
+    current_user.save
+    redirect_to account_path, notice: "Your account has been credited with a consultation", status: :see_other
   end
 
   private
