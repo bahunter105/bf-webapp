@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get 'about', to: 'pages#about'
   get 'contact', to: 'pages#contact_us'
   get 'consultations', to: 'pages#consultations'
+  get 'consultations/purchase', to: 'pages#consultation_purchase'
   get 'GWM', to: 'pages#grow_with_me'
   get 'account', to: 'pages#account'
 

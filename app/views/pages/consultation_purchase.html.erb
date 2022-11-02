@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row d-flex align-items-center mb-5">
       <div class="vh-70 col-12 col-lg-6">
-        <h2 style="margin-bottom: 1rem;">Book A Consultation</h2>
+        <h2 style="margin-bottom: 1rem;">Purchase Consultations</h2>
       </div>
       <div class="col-12 col-lg-6">
         <div class="mw-lg-md ms-lg-auto">
@@ -12,30 +12,30 @@
     </div>
     <div class="row align-items-center p-5 p-lg-12 bg-light mb-5">
       <div class="col-12 col-lg-5 mb-4">
-        <h3 class="mb-4 text-center">Book a Single Session</h3>
+        <h3 class="mb-4 text-center">Single Session</h3>
       </div>
       <div class="col-12 col-lg-2 mb-4 mb-lg-0">
       </div>
       <div class="col-12 col-lg-3 mb-4 text-center">
-        <%# <h2 class="text-primary">$49.99</h2>
-        <p class="mb-0 text-muted">per session</p> %>
+        <h2 class="text-primary">$49.99</h2>
+        <p class="mb-0 text-muted">per session</p>
       </div>
       <div class="col-12 col-lg-2 mb-4">
-        <%= link_to "Book now", new_user_consultation_path(current_user), class: "btn btn-primary w-100" %>
+        <%= link_to "Purchase now", create_consult_order_path(quantity: 1), class: "btn btn-primary w-100" %>
       </div>
     </div>
     <div class="row align-items-center p-5 p-lg-12 mb-5 bg-primary">
       <div class="col-12 col-lg-5 mb-4">
-        <h3 class="text-white mb-4 text-center">Purchase A Consultation Package</h3>
+        <h3 class="text-white mb-4 text-center">Five Sessions</h3>
       </div>
       <div class="col-12 col-lg-2 mb-4 mb-lg-0">
       </div>
       <div class="col-12 col-lg-3 mb-4 text-center">
-        <h2 class="text-white">From $39.99</h2>
+        <h2 class="text-white">$39.99</h2>
         <p class="mb-0 text-white">per session</p>
       </div>
       <div class="col-12 col-lg-2 mb-4">
-        <%= link_to "Purchase", consultations_purchase_path, class: "btn btn-secondary w-100" %>
+        <%= link_to "Purchase now", create_consult_order_path(quantity: 5), class: "btn btn-secondary w-100" %>
       </div>
     </div>
   </div>

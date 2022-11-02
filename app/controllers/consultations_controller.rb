@@ -6,6 +6,12 @@ class ConsultationsController < ApplicationController
   end
 
   def new
+    if @user.remaining_consultations <= 0
+      flash[:purchase_consultations] = "You have no purchased consultations remaining."
+    else
+      flash[:notice] = "You have #{@user.remaining_consultations} consultations remaining."
+    end
+
     @consultation = Consultation.new # Needed to instantiate the form_with
     calendar = Google::Apis::CalendarV3::CalendarService.new
     scope = 'https://www.googleapis.com/auth/calendar'
