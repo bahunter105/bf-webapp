@@ -23,7 +23,7 @@
         <div class="d-flex justify-content-center py-3">
           <%= form_with model: [:user, @consultation], authenticity_token: true do |f| %>
               <%= hidden_field :datatime, value: "#{btn_time.to_s[0...-6]}" %>
-              <%= f.submit "Book #{btn_time.strftime('%I:%M %p')}", class: "btn btn-primary consultbtn", style: "display:none" %>
+              <%= f.submit "Book #{btn_time.strftime('%I:%M %p')}", data: { turbo: false }, class: "btn btn-primary consultbtn", style: "display:none" %>
           <% end %>
         </div>
       <% end %>

@@ -7,9 +7,9 @@ class ConsultationsController < ApplicationController
 
   def new
     if @user.remaining_consultations <= 0
-      flash[:purchase_consultations] = "You have no purchased consultations remaining."
+      flash[:purchase_consultations] = "You have no purchased consultations remaining"
     else
-      flash[:notice] = "You have #{@user.remaining_consultations} consultations remaining."
+      flash[:notice] = "You have #{@user.remaining_consultations} consultations remaining"
     end
 
     @consultation = Consultation.new # Needed to instantiate the form_with
@@ -28,9 +28,15 @@ class ConsultationsController < ApplicationController
   end
 
   def create
+    if @user.remaining_consultations <= 0
+      redirect_to account_path, purchase_consultations: "Consultation not scheduled. You have no purchased consultations remaining."
+      return
+    end
+
     @consultation = Consultation.new
     @consultation.user = @user
     @consultation.date_time = params[:date_time]
+    # @consultation.date_time = Time.now
     @consultation.save
     calendar = Google::Apis::CalendarV3::CalendarService.new
     scope = 'https://www.googleapis.com/auth/calendar'
@@ -77,11 +83,12 @@ class ConsultationsController < ApplicationController
     )
 
     result = calendar.insert_event(calendar_id, event)
-    puts "Event created: #{result.html_link}"
+    # puts "Event created: #{result.html_link}"
 
+    @user.remaining_consultations -= 1
+    @user.save
 
-
-    redirect_to account_path
+    redirect_to account_path, notice: "You have successfully booked a consultation"
   end
 
   private
