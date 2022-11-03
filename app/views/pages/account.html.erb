@@ -113,28 +113,26 @@
           </div>
           <div class="border rounded-3 p-5 mb-4">
             <a class="fw-bold text-dark text-decoration-none" href="#faq1-3" type="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="faq1-1">Consultations</a>
-            <div class="collapse mt-4" id="faq1-3">
+            <div class="collapse mt-5" id="faq1-3">
               <ul class="list-group list-group" style="background-color: #e91e6300;">
                 <li class="list-group-item d-flex justify-content-between align-items-start" style="background-color: #e91e6300;">
                   <div class="ms-2 me-auto">
-                    <div class="fw-bold">Purchased Consultations Remaining:</div>
-                    <%=current_user.remaining_consultations%>
+                    <div class="fw-bold">Purchased Consultations Remaining: <%=current_user.remaining_consultations%></div>
                   </div>
                 </li>
               </ul>
-              <div class="row text-center">
-                <h1>Checkout summary</h1>
+              <div class="row pt-5">
+                <p class="fw-bold text-dark text-decoration-none">Scheduled Consultations</p>
               </div>
-              <div class="row py-5">
-                <div class="col-lg-2"></div>
-                <div class="col-lg-9">
+              <div class="row py-2">
+                <div class="col-lg-12">
                   <table class="table table-hover table-sm">
                     <thead>
                       <tr>
                         <th scope="col">#</th>
                         <th scope="col">Date</th>
                         <th scope="col">Start Time</th>
-                        <th scope="col">Reschedule/Cancel</th>
+                        <th scope="col">Cancel</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -153,14 +151,43 @@
                     </tbody>
                   </table>
                 </div>
-                <div class="col-lg-2"></div>
               </div>
             </div>
           </div>
           <div class="border rounded-3 p-5 mb-4">
             <a class="fw-bold text-dark text-decoration-none" href="#faq1-4" type="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="faq1-1">Payment History</a>
-            <div class="collapse mt-4" id="faq1-3">
-              <p class="mw-3xl">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec urna lacus. Pellentesque in lacus eu est suscipit volutpat eu eget diam. Donec eget justo et diam condimentum bibendum. Donec convallis tellus sem, at lobortis nulla sagittis in. Proin facilisis a enim eget luctus. Sed et maximus libero. Nulla pellentesque imperdiet neque vitae fringilla.</p>
+            <div class="collapse mt-4" id="faq1-4">
+              <div class="row pt-5">
+                <p class="fw-bold text-dark text-decoration-none">Paid Orders</p>
+              </div>
+              <div class="row py-2">
+                <div class="col-lg-12">
+                  <table class="table table-hover table-sm">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Details</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <% index = 0 %>
+                    <% @current_user.orders.each do |order| %>
+                      <% if order.state = "paid" %>
+                        <% index += 1 %>
+                        <tr>
+                          <th scope="row"><%= index %> </th>
+                          <td><%= order.updated_at.getlocal.strftime('%m/%d/%Y') %></td>
+                          <td>
+                            <div class="btn btn-secondary" style="padding-top: 2px;padding-bottom: 2px;padding-left: 6px;padding-right: 6px;margin-bottom: 0px;margin-top: 0px;"> <%= link_to "Details",  order_path(order), :class=>"text-white text-decoration-none" %> </div>
+                          </td>
+                        </tr>
+                      <% end %>
+                    <% end %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
           </div>
         </div>

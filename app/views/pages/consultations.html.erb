@@ -21,7 +21,11 @@
         <p class="mb-0 text-muted">per session</p> %>
       </div>
       <div class="col-12 col-lg-2 mb-4">
-        <%= link_to "Book now", new_user_consultation_path(current_user), class: "btn btn-primary w-100" %>
+        <% if user_signed_in? %>
+          <%= link_to "Book now", new_user_consultation_path(current_user), class: "btn btn-primary w-100" %>
+        <% else %>
+          <%= link_to "Book now", new_user_session_path, class: "btn btn-primary w-100" %>
+        <% end %>
       </div>
     </div>
     <div class="row align-items-center p-5 p-lg-12 mb-5 bg-primary">
