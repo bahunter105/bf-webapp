@@ -5,17 +5,32 @@
         <h1>Schedule A Consultation</h1>
       </div>
       <div class="row py-5">
-        <div class="col-lg-2"></div>
-        <div class="col-lg-9" data-controller="conscalendar">
-          <%= form_with model: Consultation.new, authenticity_token: true do |f| %>
-            <%= f.label :date_time, "Select a date:" %>
-            <%= f.text_field :date_time,
-              data: {
-                behavior: "flatpickr",
-              } %>
+        <div class="col-lg-2">
+          <%= form_with do |form| %>
+            <%= form.label "Consult Category" %>
+            <%= form.select :category, ['1', '2', '3'], selected: @category  %>
+            <%= form.submit "Select Category", data: { turbo: false }, class: "btn btn-secondary" %>
           <% end %>
         </div>
-        <div class="col-lg-2"></div>
+
+        <% if params[:category] %>
+          <section>
+            <div class="form-group">
+              <label for="textarea1">Please provide additional background information if needed:</label>
+              <textarea class="form-control" id="textarea1" rows="3"></textarea>
+            </div>
+            <div class="col-lg-9" data-controller="conscalendar">
+              <%= form_with model: Consultation.new, authenticity_token: true do |f| %>
+                <%= f.label :date_time, "Select a date:" %>
+                <%= f.text_field :date_time,
+                  data: {
+                    behavior: "flatpickr",
+                  } %>
+              <% end %>
+            </div>
+            <div class="col-lg-2"></div>
+          </section>
+        <% end %>
       </div>
       <% btn_time = Time.parse("11:00 PM") - 1.day%>
       <% 24.times do %>
@@ -23,6 +38,8 @@
         <div class="d-flex justify-content-center py-3">
           <%= form_with model: [:user, @consultation], authenticity_token: true do |f| %>
               <%= hidden_field :datatime, value: "#{btn_time.to_s[0...-6]}" %>
+              <%= hidden_field :consulting_category, value: @category %>
+              <%= hidden_field :notes, value: nil %>
               <%= f.submit "Book #{btn_time.strftime('%I:%M %p')}", data: { turbo: false }, class: "btn btn-primary consultbtn", style: "display:none" %>
           <% end %>
         </div>

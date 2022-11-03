@@ -13,8 +13,27 @@ export default class extends Controller {
       altInput: true,
       altFormat: "F j, Y",
       dateFormat: "Y-m-d",
-      minDate: "today",
+      // minDate: "today",
+      minDate: new Date().fp_incr(1),
       maxDate: new Date().fp_incr(180), // 180 days from now
+    })
+
+    let consultbtns = document.querySelectorAll(".consultbtn")
+    consultbtns.forEach((btn) => {
+      let hidden_input = btn.parentElement.querySelectorAll('input')[2]
+      hidden_input.setAttribute('name', 'consult_category')
+      hidden_input.setAttribute('value', gon.category)
+
+      hidden_input = btn.parentElement.querySelectorAll('input')[3]
+      hidden_input.setAttribute('name', 'notes')
+    })
+    // set listener event for notes
+    document.querySelector('#textarea1').addEventListener('keyup', function(e) {
+      // console.log(e.target.value)
+      let consultbtns = document.querySelectorAll(".consultbtn")
+      consultbtns.forEach((btn) => {
+        btn.parentElement.querySelectorAll("input")[3].setAttribute("value", e.target.value)
+      })
     })
 
     // add event listener to date picker
@@ -50,11 +69,11 @@ export default class extends Controller {
         hidden_input.setAttribute('value', value_date_st)
 
         let date_st = value_date_st.slice(0,19)
-        let in_twelve_hours = new Date()
-        in_twelve_hours.setHours(in_twelve_hours.getHours()+12)
+        let in_twentyfour_hours = new Date()
+        in_twentyfour_hours.setHours(in_twentyfour_hours.getHours()+24)
         let btn_start_date = new Date(date_st)
 
-        if (btn_start_date <= in_twelve_hours) {
+        if (btn_start_date <= in_twentyfour_hours) {
           btn.disabled = true
         } else {
           btn.disabled = false
