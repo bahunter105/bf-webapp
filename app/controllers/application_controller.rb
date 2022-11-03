@@ -41,5 +41,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  add_flash_types :purchase_consultations
 
 end

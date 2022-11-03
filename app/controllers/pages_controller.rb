@@ -29,6 +29,9 @@ class PagesController < ApplicationController
   def consultations
   end
 
+  def consultation_purchase
+  end
+
   def about
   end
 

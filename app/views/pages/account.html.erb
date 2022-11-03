@@ -27,6 +27,12 @@
             <span>Favorited Workshops</span>
           </a>
           <a class="btn mb-2 text-start w-100" href="#faq1-3" type="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="faq1-1">
+            <span class="me-3" style="text-align: center;">
+              <i style="height: 20px;width: 20px;" viewBox="0 0 20 20" class="fa-regular fa-calendar-check"></i>
+            </span>
+            <span>Consultations</span>
+          </a>
+          <a class="btn mb-2 text-start w-100" href="#faq1-4" type="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="faq1-1">
             <span class="me-3">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M16.25 4.375H3.75C3.05964 4.375 2.5 4.93464 2.5 5.625V14.375C2.5 15.0654 3.05964 15.625 3.75 15.625H16.25C16.9404 15.625 17.5 15.0654 17.5 14.375V5.625C17.5 4.93464 16.9404 4.375 16.25 4.375Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -106,9 +112,82 @@
             </div>
           </div>
           <div class="border rounded-3 p-5 mb-4">
-            <a class="fw-bold text-dark text-decoration-none" href="#faq1-3" type="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="faq1-1">Payment History</a>
-            <div class="collapse mt-4" id="faq1-3">
-              <p class="mw-3xl">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec urna lacus. Pellentesque in lacus eu est suscipit volutpat eu eget diam. Donec eget justo et diam condimentum bibendum. Donec convallis tellus sem, at lobortis nulla sagittis in. Proin facilisis a enim eget luctus. Sed et maximus libero. Nulla pellentesque imperdiet neque vitae fringilla.</p>
+            <a class="fw-bold text-dark text-decoration-none" href="#faq1-3" type="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="faq1-1">Consultations</a>
+            <div class="collapse mt-5" id="faq1-3">
+              <ul class="list-group list-group" style="background-color: #e91e6300;">
+                <li class="list-group-item d-flex justify-content-between align-items-start" style="background-color: #e91e6300;">
+                  <div class="ms-2 me-auto">
+                    <div class="fw-bold">Purchased Consultations Remaining: <%=current_user.remaining_consultations%></div>
+                  </div>
+                </li>
+              </ul>
+              <div class="row pt-5">
+                <p class="fw-bold text-dark text-decoration-none">Scheduled Consultations</p>
+              </div>
+              <div class="row py-2">
+                <div class="col-lg-12">
+                  <table class="table table-hover table-sm">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Start Time</th>
+                        <th scope="col">Cancel</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <% index = 0 %>
+                    <% @current_user.consultations.each do |consultation| %>
+                      <% index += 1 %>
+                      <tr>
+                        <th scope="row"><%= index %></th>
+                        <td><%= consultation.date_time.getlocal.strftime('%A %m/%d/%Y') %></td>
+                        <td><%= consultation.date_time.getlocal.strftime('%I:%S%P %A') %></td>
+                        <td>
+                          <div class="btn btn-secondary" style="padding-top: 2px;padding-bottom: 2px;padding-left: 6px;padding-right: 6px;margin-bottom: 0px;margin-top: 0px;"> <%= link_to "Cancel",  user_consultation_path(current_user, consultation), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, :class=>"text-white text-decoration-none" %> </div>
+                        </td>
+                      </tr>
+                    <% end %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="border rounded-3 p-5 mb-4">
+            <a class="fw-bold text-dark text-decoration-none" href="#faq1-4" type="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="faq1-1">Payment History</a>
+            <div class="collapse mt-4" id="faq1-4">
+              <div class="row pt-5">
+                <p class="fw-bold text-dark text-decoration-none">Paid Orders</p>
+              </div>
+              <div class="row py-2">
+                <div class="col-lg-12">
+                  <table class="table table-hover table-sm">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Details</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <% index = 0 %>
+                    <% @current_user.orders.each do |order| %>
+                      <% if order.state = "paid" %>
+                        <% index += 1 %>
+                        <tr>
+                          <th scope="row"><%= index %> </th>
+                          <td><%= order.updated_at.getlocal.strftime('%m/%d/%Y') %></td>
+                          <td>
+                            <div class="btn btn-secondary" style="padding-top: 2px;padding-bottom: 2px;padding-left: 6px;padding-right: 6px;margin-bottom: 0px;margin-top: 0px;"> <%= link_to "Details",  order_path(order), :class=>"text-white text-decoration-none" %> </div>
+                          </td>
+                        </tr>
+                      <% end %>
+                    <% end %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
           </div>
         </div>
