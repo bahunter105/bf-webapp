@@ -6,18 +6,38 @@ class ConsultationsController < ApplicationController
   end
 
   def new
+    # pry
     if @user.remaining_consultations <= 0
       flash[:purchase_consultations] = "You have no purchased consultations remaining"
     else
       flash[:notice] = "You have #{@user.remaining_consultations} consultations remaining"
     end
 
+    if params[:category].nil?
+      @category = '1'
+    else
+      @category = params[:category]
+    end
+
+    gon.category = @category
+
     @consultation = Consultation.new # Needed to instantiate the form_with
     calendar = Google::Apis::CalendarV3::CalendarService.new
     scope = 'https://www.googleapis.com/auth/calendar'
     authorizer = Google::Auth::ServiceAccountCredentials.from_env(scope: scope)
     calendar.authorization = authorizer
-    calendar_id = 'hunter@brightfutures.net'
+
+    case @category
+    when '1'
+      calendar_id = 'hunter@brightfutures.net'
+    when '2'
+      calendar_id = 'hunter@brightfutures.net'
+    when '3'
+      calendar_id = 'hunter@brightfutures.net'
+    else
+      calendar_id = 'hunter@brightfutures.net'
+    end
+
     result = calendar.list_events(calendar_id,
                                     max_results: 100,
                                     single_events: true,
@@ -28,14 +48,17 @@ class ConsultationsController < ApplicationController
   end
 
   def create
+    # pry
     if @user.remaining_consultations <= 0
       redirect_to account_path, purchase_consultations: "Consultation not scheduled. You have no purchased consultations remaining."
       return
     end
-
     @consultation = Consultation.new
     @consultation.user = @user
     @consultation.date_time = params[:date_time]
+    @consultation.consult_category = params[:consult_category]
+    @consultation.notes = params[:notes]
+    # pry
     # @consultation.date_time = Time.now
     @consultation.save
     calendar = Google::Apis::CalendarV3::CalendarService.new
@@ -116,7 +139,8 @@ class ConsultationsController < ApplicationController
   end
 
   def consultation_params
-    # params.require(:consultation)
+    params.require(:consult_category)
+    params.require(:notes)
     params.require(:date_time)
   end
 end
