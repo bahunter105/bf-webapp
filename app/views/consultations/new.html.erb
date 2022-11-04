@@ -32,21 +32,39 @@
           </section>
         <% end %>
       </div>
-      <% btn_time = Time.parse("11:00 PM") - 1.day%>
-      <% 24.times do %>
-        <% btn_time += 3600%>
-        <div class="d-flex justify-content-center py-3">
-          <%= form_with model: [:user, @consultation], authenticity_token: true do |f| %>
-              <%= hidden_field :datatime, value: "#{btn_time.to_s[0...-6]}" %>
-              <%= hidden_field :consulting_category, value: @category %>
-              <%= hidden_field :notes, value: nil %>
-              <%= f.submit "Book #{btn_time.strftime('%I:%M %p')}", data: { turbo: false }, class: "btn btn-primary consultbtn", style: "display:none" %>
-          <% end %>
-        </div>
-      <% end %>
-
+      <table class="table text-center" style="display:none">
+        <thead>
+          <tr>
+            <th scope="col">AM</th>
+            <th scope="col">PM</th>
+          </tr>
+        </thead>
+        <tbody>
+            <% btn_time = Time.parse("11:00 PM") - 1.day%>
+            <% 12.times do %>
+              <% btn_time += 3600%>
+              <tr>
+                <td style="padding-bottom: 0px;padding-top: 0px;">
+                <%= form_with model: [:user, @consultation], authenticity_token: true do |f| %>
+                    <%= hidden_field :datatime, value: "#{btn_time.to_s[0...-6]}" %>
+                    <%= hidden_field :consulting_category, value: @category %>
+                    <%= hidden_field :notes, value: nil %>
+                    <%= f.submit "Book #{btn_time.strftime('%I:%M %p')}", data: { turbo: false }, class: "btn btn-primary consultbtn", style: "margin: 0.2rem; padding: 0.2rem; display:none" %>
+                <% end %>
+                </td>
+                <td style="padding-bottom: 0px;padding-top: 0px;">
+                <% btn_time_pm = btn_time + 12.hour%>
+                <%= form_with model: [:user, @consultation], authenticity_token: true do |f| %>
+                    <%= hidden_field :datatime, value: "#{btn_time_pm.to_s[0...-6]}" %>
+                    <%= hidden_field :consulting_category, value: @category %>
+                    <%= hidden_field :notes, value: nil %>
+                    <%= f.submit "Book #{btn_time_pm.strftime('%I:%M %p')}", data: { turbo: false }, class: "btn btn-primary consultbtn", style: "margin: 0.2rem; padding: 0.2rem; display:none" %>
+                <% end %>
+                </td>
+              </tr>
+            <% end %>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
-<%# @force_refresh = true to refresh page for stripe payment. Workaround for turbolinks reload %>
-<%# <% @force_refresh = true %> %>

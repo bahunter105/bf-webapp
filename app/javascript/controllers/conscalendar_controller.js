@@ -59,6 +59,8 @@ export default class extends Controller {
         tz_string = ` GMT-0${-1*tznumber}00`
       }
 
+      document.querySelector(".table").style.display = ""
+
       // Update hidden values on the consultation buttons.
       consultbtns.forEach((btn) => {
         btn.style.display = "";

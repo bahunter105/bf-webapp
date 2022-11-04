@@ -137,16 +137,19 @@
                     </thead>
                     <tbody>
                     <% index = 0 %>
+                    <% now = Time.now %>
                     <% @current_user.consultations.each do |consultation| %>
-                      <% index += 1 %>
-                      <tr>
-                        <th scope="row"><%= index %></th>
-                        <td><%= consultation.date_time.getlocal.strftime('%A %m/%d/%Y') %></td>
-                        <td><%= consultation.date_time.getlocal.strftime('%I:%S%P') %></td>
-                        <td>
-                          <div class="btn btn-secondary" style="padding-top: 2px;padding-bottom: 2px;padding-left: 6px;padding-right: 6px;margin-bottom: 0px;margin-top: 0px;"> <%= link_to "Cancel",  user_consultation_path(current_user, consultation), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, :class=>"text-white text-decoration-none" %> </div>
-                        </td>
-                      </tr>
+                      <% if consultation.date_time >= now %>
+                        <% index += 1 %>
+                        <tr>
+                          <th scope="row"><%= index %></th>
+                          <td><%= consultation.date_time.getlocal.strftime('%A %m/%d/%Y') %></td>
+                          <td><%= consultation.date_time.getlocal.strftime('%I:%S%P') %></td>
+                          <td>
+                            <div class="btn btn-secondary" style="padding-top: 2px;padding-bottom: 2px;padding-left: 6px;padding-right: 6px;margin-bottom: 0px;margin-top: 0px;"> <%= link_to "Cancel",  user_consultation_path(current_user, consultation), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, :class=>"text-white text-decoration-none" %> </div>
+                          </td>
+                        </tr>
+                      <% end %>
                     <% end %>
                     </tbody>
                   </table>
