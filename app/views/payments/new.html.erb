@@ -36,13 +36,8 @@
                 <th scope="row"><%= index %></th>
                 <td>Consulting Session</td>
                 <td><%= @order.consult_products.first.quantity%></td>
-                <% if @order.consult_products.first.quantity >= 5 %>
-                  <td><%= humanized_money_with_symbol 39.99 %> </td>
-                  <td><strong><%= humanized_money_with_symbol @order.consult_products.first.quantity*39.99 %></strong></td>
-                <%elsif @order.consult_products.first.quantity > 0 %>
-                  <td><%= humanized_money_with_symbol 49.99 %> </td>
-                  <td><strong><%= humanized_money_with_symbol @order.consult_products.first.quantity*49.99 %></strong></td>
-                <% end %>
+                <td><%= humanized_money_with_symbol @order.consult_products.first.price/@order.consult_products.first.quantity %> </td>
+                <td><strong><%= humanized_money_with_symbol @order.consult_products.first.price %></strong></td>
               </tr>
             <% end %>
               <tr>
