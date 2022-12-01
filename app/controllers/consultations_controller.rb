@@ -14,7 +14,7 @@ class ConsultationsController < ApplicationController
     end
 
     if params[:category].nil?
-      @category = '1'
+      @category = 'General'
     else
       @category = params[:category]
     end
@@ -27,6 +27,8 @@ class ConsultationsController < ApplicationController
     authorizer = Google::Auth::ServiceAccountCredentials.from_env(scope: scope)
     calendar.authorization = authorizer
 
+
+    # todo update to barb's and holly's emails & calendars
     case @category
     when '1'
       calendar_id = 'hunter@brightfutures.net'

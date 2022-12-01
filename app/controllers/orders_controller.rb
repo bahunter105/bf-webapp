@@ -48,7 +48,7 @@ class OrdersController < ApplicationController
     consult_product.save
     order.amount_cents = consult_product.price_cents
     order.save
-
+    # pry
     session = Stripe::Checkout::Session.create({
       line_items: [{
         price_data: {
@@ -196,9 +196,9 @@ class OrdersController < ApplicationController
 
   def consult_price(quantity)
     if quantity >= 5
-      return quantity*3999
+      return quantity*11999
     elsif quantity > 0
-      return quantity*4999
+      return quantity*14999
     end
   end
 end

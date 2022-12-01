@@ -8,7 +8,15 @@
         <div class="col-lg-2">
           <%= form_with do |form| %>
             <%= form.label "Consult Category" %>
-            <%= form.select :category, ['1', '2', '3'], selected: @category  %>
+            <%= form.select :category, [
+                'Child development',
+                'Child behavior supports',
+                'Positive guidance',
+                'Support for weathering tantrums',
+                'Early intervention',
+                'Early detection/Developmental concerns',
+                'Infant development and support'],
+              selected: @category  %>
             <%= form.submit "Select Category", data: { turbo: false }, class: "btn btn-secondary" %>
           <% end %>
         </div>
