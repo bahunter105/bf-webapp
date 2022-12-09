@@ -9,12 +9,14 @@ Rails.application.routes.draw do
     post 'consultations/new', to: 'consultations#new'
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  root to: 'pages#coming_soon'
-  get 'home', to: 'pages#home'
-  get 'families', to: 'pages#family_home'
-  get 'home/educators', to: 'pages#educator_home'
+  # root to: 'pages#coming_soon'
+  root to: 'pages#home'
+  # get 'home', to: 'pages#home'
+  # get 'families', to: 'pages#family_home'
+  get 'educators', to: 'pages#educator_home'
   get 'webinar', to: 'pages#webinar'
-  get 'courses', to: 'pages#courses'
+  # TODO Update Courses and Change from Workshops
+  get 'courses', to: 'workshops#workshops'
   get 'ambassador/family', to: 'pages#ambassador_family'
   get 'ambassador/educators', to: 'pages#ambassador_educator'
   get 'about', to: 'pages#about'

@@ -1,14 +1,14 @@
 <nav class="position-relative navbar navbar-expand-lg navbar-light">
   <div class="container">
-    <a class="navbar-brand" href="/home">
+    <a class="navbar-brand" href="/">
       <%= image_tag "logo_w_bg.png", alt: "Bright Futures Logo", style: "width: 8rem;"%>
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <ul class="d-none d-lg-flex position-absolute top-50 start-50 translate-middle navbar-nav">
-      <li class="nav-item nav-link"> <%= link_to "Families", "#{home_path}#fs" %> </li>
-      <li class="nav-item nav-link"> <%= link_to "Educators", "#{home_educators_path}#es" %> </li>
+      <li class="nav-item nav-link"> <%= link_to "Families", "#{root_path}#fs" %> </li>
+      <li class="nav-item nav-link"> <%= link_to "Educators", "#{educators_path}#es" %> </li>
     </ul>
     <div class="d-none d-lg-block">
       <a class="btn me-2 btn-primary text-white text-decoration-none" href="/workshops"> <i class="fa-solid fa-magnifying-glass"></i> Find A Workshop</a>
@@ -17,7 +17,7 @@
           <%=current_user.first_name[0].capitalize+current_user.last_name[0].capitalize%>
         </div>
         <% if @cart.size >= 1  %>
-          <span class="badge badge-notify" style="font-size:10px;margin-right: -22px;"><%= @cart.size %></span>
+          <span class="badge badge-notify" style="font-size:10px"><%= @cart.size %></span>
         <% end %>
         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
           <%= link_to(new_user_consultation_path(current_user), :class=>"dropdown-item") do %>
@@ -49,8 +49,8 @@
 
 <div class="collapse navbar-collapse" id="navbarSupportedContent">
   <ul class="navbar-nav me-auto d-flex align-items-end p-3">
-    <li class="nav-item nav-link"> <%= link_to "Families", "#{home_path}#fs", :class=>"small text-muted text-decoration-none" %> </li>
-    <li class="nav-item nav-link"> <%= link_to "Educators", "#{home_educators_path}#es", :class=>"small text-muted text-decoration-none" %> </li>
+    <li class="nav-item nav-link"> <%= link_to "Families", "#{root_path}#fs", :class=>"small text-muted text-decoration-none" %> </li>
+    <li class="nav-item nav-link"> <%= link_to "Educators", "#{educators_path}#es", :class=>"small text-muted text-decoration-none" %> </li>
     <li class="nav-item nav-link border-top align-self-center"></li>
     <li class="nav-item nav-link">
       <a class="btn btn-primary text-white text-decoration-none" href="/workshops"> <i class="fa-solid fa-magnifying-glass"></i> Find A Workshop</a>

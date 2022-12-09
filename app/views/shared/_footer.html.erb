@@ -1,52 +1,8 @@
-
-<%# <footer class="bd-footer py-5 mt-5 bg-light">
-  <div class="container py-5">
-    <div class="row">
-      <div class="col-4 col-lg-2 mb-3">
-        <h5>Resources</h5>
-        <ul class="list-unstyled">
-          <li class="mb-2"><a href="/families">Families</a></li>
-          <li class="mb-2"><a href="/educators">Educators</a></li>
-        </ul>
-      </div>
-      <div class="col-4 col-lg-2 mb-3">
-        <h5>Our Products</h5>
-        <ul class="list-unstyled">
-          <li class="mb-2"><a href="/webinar">Free Webinar</a></li>
-          <li class="mb-2"><a href="/workshops">Workshops</a></li>
-          <li class="mb-2"><a href="/courses">Courses</a></li>
-          <li class="mb-2"><a href="/consultations">Consultations</a></li>
-          <li class="mb-2"><a href="/ambassador/family">Ambassador Program</a></li>
-          <li class="mb-2"><a href="/">Insights Hub</a></li>
-        </ul>
-      </div>
-      <div class="col-4 col-lg-2 mb-3">
-        <h5>About Us</h5>
-        <ul class="list-unstyled">
-          <li class="mb-2"><a href="/about">Team</a></li>
-          <li class="mb-2"><a href="/about">Mission & Vision</a></li>
-          <li class="mb-2"><a href="/contact">Contact Us</a></li>
-        </ul>
-      </div>
-      <div class="col-lg-3 mb-3"></div>
-      <div class="col-12 col-lg-3 mb-3 text-center">
-        <a class="d-inline-flex align-items-center mb-2 link-dark text-decoration-none" href="/home" aria-label="Bootstrap">
-            <%= image_tag "logo_w_bg.png", alt: "Bright Futures Logo", style: "width: 7rem;"%>
-        <%# </a>
-        <ul class="list-unstyled small text-muted">
-          <li class="mb-2">Designed and built by</li>
-          <li class="mb-2">© Bright Futures International.</li>
-          <li class="mb-2">All Rights Reserved.</li>
-        </ul>
-    </div>
-  </div>
-</footer> %>
-
 <section class="pt-3 border-top">
   <div class="container">
     <div class="row border-bottom">
       <div class="col-12 col-lg-3 mb-10 mb-lg-0">
-        <a class="navbar-brand" href="/home">
+        <a class="navbar-brand" href="/">
           <%= image_tag "logo_w_bg.png", alt: "Bright Futures Logo", style: "width: 6rem;"%>
         </a>
       </div>
@@ -55,7 +11,8 @@
           <div class="col-12 col-sm-6 col-lg-auto mb-8 mb-lg-0">
             <p class="fw-bold mb-6">Products</p>
             <ul class="list-unstyled">
-              <li class="mb-3"><%= link_to "Free Webinars",  webinar_path, :class=>"small text-muted text-decoration-none" %></li>
+              <%# <li class="mb-3"><%= link_to "Free Webinars",  webinar_path, :class=>"small text-muted text-decoration-none" </li> %>
+              <li class="mb-3 small text-muted text-decoration-none">Free Webinars (Coming Soon)</li>
               <li class="mb-3"><%= link_to "Workshops",  workshops_path, :class=>"small text-muted text-decoration-none" %></li>
               <li class="mb-3"><%= link_to "Courses",  courses_path, :class=>"small text-muted text-decoration-none" %></li>
               <li class="mb-3"><%= link_to "Consultations",  consultations_path, :class=>"small text-muted text-decoration-none" %></li>
