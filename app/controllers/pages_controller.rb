@@ -8,9 +8,6 @@ class PagesController < ApplicationController
   def home
   end
 
-  def family_home
-  end
-
   def educator_home
   end
 
